@@ -4,8 +4,8 @@ class Mover {
     this.radius = radius;
     this.velocity = createVector(10, 10);
     this.gravity = createVector(0, 1);
-    // Damping determines how much the walls will absorb force. Must always be negative.
-    // The more damping, the less bouncing.
+    // Damping determines how much the walls will absorb force. Must always be negative, never above 1.
+    // The less damping, the less bouncing.
     this.damping = -1;
   }
 
