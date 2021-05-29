@@ -2,24 +2,38 @@ class Mover {
   constructor(x, y, radius) {
     this.position = createVector(x, y);
     this.radius = radius;
-    this.velocity = createVector(10, 10);
+    this.velocity = createVector(0, 0);
     this.gravity = createVector(0, 1);
-    // Damping determines how much the walls will absorb force. Must always be negative, never above 1.
-    // The less damping, the less bouncing.
-    this.damping = -1;
+    this.damping = -0.6;
+  }
+
+  // Set the initial velocity and the angle of that velocity.
+  setVelocity(value, angle) {
+    this.velocity.x = value * Math.cos(angle);
+    this.velocity.y = value * Math.sin(angle);
+  }
+
+  setHeight(value) {
+    this.position.y = height - this.radius - value;
   }
 
   // Checks if object has hit the boundaries and then implements reaction accordingly
   checkBound() {
-    if (this.position.y >= height - this.radius) {
+    if (this.position.y > height - this.radius) {
       this.position.y = height - this.radius;
       this.velocity.y *= this.damping;
+      // this.velocity.y = 0;
+      // this.velocity.x = 0;
+    } else if (this.position.y < this.radius) {
+      this.position.y = this.radius;
+      this.velocity.y *= this.damping;
     }
-    if (this.position.x >= width - this.radius) {
+
+    if (this.position.x > width - this.radius) {
       this.position.x = width - this.radius;
       this.velocity.x *= this.damping;
-    } else if (this.position.x <= this.radius) {
-      this.position.x =  this.radius;
+    } else if (this.position.x < this.radius) {
+      this.position.x = this.radius;
       this.velocity.x *= this.damping;
     }
   }
@@ -32,9 +46,9 @@ class Mover {
 
   //Displays the object
   display() {
-    stroke(25);
-    strokeWeight(2);
+    // stroke(25);
+    strokeWeight(0);
     fill(255, 100, 100);
-    ellipse(this.position.x, this.position.y, this.radius, this.radius);
+    ellipse(this.position.x, this.position.y, this.radius * 2);
   }
 }
