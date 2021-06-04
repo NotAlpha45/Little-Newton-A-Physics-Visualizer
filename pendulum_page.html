@@ -6,9 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Pendulum</title>
     <script src="node_modules/p5.min.js"></script>
+    <script src="node_modules/plotly.js-dist-min/plotly.min.js"></script>
+
+    <style>
+      .container2{
+        position: relative;
+        top:600px;
+      }
+    </style>
+
   </head>
   <body>
+    <div class="container1" id="pendulum_simulation"></div>
+    <div class="container2" id="chart"></div>
+
     <script src="bob.js"></script>
     <script src="pendulum_main.js"></script>
+    <!-- <script src="chart_fiddling.js"></script> -->
   </body>
 </html>
