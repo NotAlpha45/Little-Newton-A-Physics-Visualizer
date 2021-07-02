@@ -7,17 +7,19 @@
     <title>Simple Pendulum</title>
     <script src="node_modules/p5.min.js"></script>
     <script src="node_modules/plotly.js-dist-min/plotly.min.js"></script>
-
-    <style>
-      .container2{
-        position: relative;
-        top:600px;
-      }
-    </style>
-
+    <link rel="stylesheet" href="pendulum_page_style.css" />
   </head>
   <body>
-    <div class="container1" id="pendulum_simulation"></div>
+    <div class="mathcontainer" id="math">
+      <h2>Problem Description</h2>
+      <div class="description" id="description">
+        This is a text for a problem.
+      </div>
+    </div>
+    <div class="container1" id="pendulum_simulation">
+      <div class="section1" id="pendulum_display"></div>
+      </div>
+    </div>
     <div class="container2" id="chart"></div>
 
     <script src="bob.js"></script>

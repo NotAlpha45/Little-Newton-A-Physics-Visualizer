@@ -1,6 +1,6 @@
 class Bob {
-  constructor(distance, angle, radius) {
-    this.distance = distance;
+  constructor(length, angle, radius) {
+    this.length = length;
     this.radius = radius;
     this.angle = angle;
     this.angular_velocity = 0;
@@ -9,15 +9,27 @@ class Bob {
     // 1 -> No damping
     // 0 -> Stop entirely.
     this.damping = 1;
-    this.gravity = 0.9;
+    this.gravity = 0.98;
     // origin is the attaching position of the string.
-    this.origin = createVector(width / 2, 100);
+    this.origin = createVector(width / 2 - 100, 0);
     // Position is the position of the bob.
     this.position = createVector();
 
     // Previous position is the previous position of the bob.
     // This will help us in drawing trail.
     this.previous_position = createVector();
+  }
+
+  set_angle(value) {
+    this.angle = value;
+  }
+
+  set_gravity(value) {
+    this.gravity = value;
+  }
+
+  set_length(value) {
+    this.length = value;
   }
 
   set_damping(value) {
@@ -33,19 +45,19 @@ class Bob {
     //Pendulum moves according to the angular acceleration and velocity which again
     // displaces the angle.
     this.angular_acceleration =
-      (-1 / this.distance) * this.gravity * Math.sin(this.angle);
+      (-1 / this.length) * this.gravity * Math.sin(this.angle);
     this.angular_velocity += this.angular_acceleration;
 
     this.apply_damping();
 
     // Setting the position according to the angle.
     this.position.set(
-      this.distance * sin(this.angle),
-      this.distance * cos(this.angle)
+      this.length * sin(this.angle),
+      this.length * cos(this.angle)
     );
     this.angle += this.angular_velocity;
 
-    // Add the origin with the position to keep the distance from the origin, the same
+    // Add the origin with the position to keep the length from the origin, the same
     // everytime.
     this.position.add(this.origin);
   }
