@@ -54,17 +54,20 @@ function setup() {
   bob = new Bob(200, 0, 30);
   bob.set_damping(1);
 
-  Plotly.plot("chart", [
-    {
-      y: [bob.position.x],
-      type: "scatter",
-    },
-  ]);
+  let plot_data = {
+    y: [bob.position.x - width / 2 + 100],
+    type: "scatter",
+  };
+
+  let graph_settings = {
+    yaxis: { range: [-200, 200] },
+  };
+
+  Plotly.newPlot("chart", [plot_data], graph_settings);
 }
 
 // Takes input from the input fields.
 function value_input() {
-  
   angle = float(angle_input_field.value());
   bob.set_angle((angle * Math.PI) / 360);
 
@@ -94,26 +97,28 @@ function draw() {
   bob.update();
 }
 
-// Sets interval for drawing of the graph. Takes the function to be intervaled and
-// the interval time as parameters. The extendTraces() functions extends a previously
-// drawn function. In this case, it extends the graph drawn on the "chart element"
-
-setInterval(function () {
+// Extends the graph via extendTraces method and keeps track of datapoint for a
+// dynamic plotline.
+function continuous_plot() {
+  
   Plotly.extendTraces(
     "chart",
     {
-      y: [[bob.position.x]],
+      y: [[bob.position.x - width / 2 + 100]],
     },
     [0]
   );
 
   datapoint_count++;
 
+  let relay_settings = {
+    xaxis: { range: [datapoint_count - MAX_DATAPOINT, datapoint_count] },
+  };
+
   if (datapoint_count > MAX_DATAPOINT) {
-    Plotly.relayout("chart", {
-      xaxis: {
-        range: [datapoint_count - MAX_DATAPOINT, datapoint_count],
-      },
-    });
+    Plotly.relayout("chart", relay_settings);
   }
-}, 1);
+}
+
+// Sets interval for drawing of the graph.
+setInterval(continuous_plot, 1);
