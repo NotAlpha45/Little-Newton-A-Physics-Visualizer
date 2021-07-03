@@ -18,38 +18,44 @@ function setup() {
 
   // angle_element is the h2 tag element beside the input field
   angle_element = createElement("h2", "Angle: ");
-  angle_element.position(width - 170 - 80, 140);
-
+  angle_element.position(width - 250, 0);
+  angle_element.parent("pendulum_display");
   // angle_input_field takes the entered value.
   angle_input_field = createInput("30");
-  angle_input_field.position(width - 100 - 80, 170);
+  angle_input_field.position(width - 180, 30);
   angle_input_field.changed(value_input);
+  angle_input_field.parent("pendulum_display");
 
   g_element = createElement("h2", "g: ");
-  g_element.position(width - 170 - 32, 200);
-
+  g_element.position(width - 202, 40);
+  g_element.parent("pendulum_display");
   g_input_field = createInput("9.8");
-  g_input_field.position(width - 100 - 80, 230);
+  g_input_field.position(width - 180, 70);
   g_input_field.changed(value_input);
+  g_input_field.parent("pendulum_display");
 
   length_element = createElement("h2", "length: ");
-  length_element.position(width - 170 - 84, 260);
-
+  length_element.position(width - 254, 80);
+  length_element.parent("pendulum_display");
   length_input_field = createInput("20");
-  length_input_field.position(width - 100 - 80, 290);
+  length_input_field.position(width - 180, 110);
   length_input_field.changed(value_input);
+  length_input_field.parent("pendulum_display");
 
   damping_element = createElement("h2", "damping: ");
-  damping_element.position(width - 100 - 182, 320);
-
+  damping_element.position(width - 282, 120);
+  damping_element.parent("pendulum_display");
   damping_input_field = createInput("1");
-  damping_input_field.position(width - 100 - 80, 350);
+  damping_input_field.position(width - 180, 150);
   damping_input_field.changed(value_input);
+  damping_input_field.parent("pendulum_display");
 
-  // You can use either the button or enter the value directly.
-  button = createButton("Run!");
-  button.position(width - 170, 380);
+ 
+  button = createButton("Run");
+  button.position(width - 170, 190);
   button.mousePressed(value_input);
+  button.parent("pendulum_display");
+
 
   bob = new Bob(200, 0, 30);
   bob.set_damping(1);
@@ -100,7 +106,6 @@ function draw() {
 // Extends the graph via extendTraces method and keeps track of datapoint for a
 // dynamic plotline.
 function continuous_plot() {
-  
   Plotly.extendTraces(
     "chart",
     {
