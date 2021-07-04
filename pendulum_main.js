@@ -75,7 +75,7 @@ function setup() {
 // Takes input from the input fields.
 function value_input() {
   angle = float(angle_input_field.value());
-  bob.set_angle((angle * Math.PI) / 360);
+  bob.set_angle((angle * Math.PI) / 180);
 
   g = float(g_input_field.value());
   bob.set_gravity(g / 10);
