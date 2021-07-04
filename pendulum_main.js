@@ -6,6 +6,11 @@ let g, g_input_field, g_element;
 let length, length_input_field, length_element;
 let damping, damping_input_field, damping_element;
 let button;
+let img;
+
+function preload() {
+  img = loadImage("assets/apple.png");
+}
 
 function setup() {
   canvas = createCanvas(900, 400);
@@ -50,14 +55,12 @@ function setup() {
   damping_input_field.changed(value_input);
   damping_input_field.parent("pendulum_display");
 
- 
   button = createButton("Run");
   button.position(width - 170, 190);
   button.mousePressed(value_input);
   button.parent("pendulum_display");
 
-
-  bob = new Bob(200, 0, 30);
+  bob = new Bob(200, 0, 30, img);
   bob.set_damping(1);
 
   let plot_data = {

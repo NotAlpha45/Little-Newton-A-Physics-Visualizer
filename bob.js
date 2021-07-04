@@ -1,5 +1,5 @@
 class Bob {
-  constructor(length, angle, radius) {
+  constructor(length, angle, radius, img) {
     this.length = length;
     this.radius = radius;
     this.angle = angle;
@@ -18,6 +18,8 @@ class Bob {
     // Previous position is the previous position of the bob.
     // This will help us in drawing trail.
     this.previous_position = createVector();
+
+    this.img = img;
   }
 
   set_angle(value) {
@@ -84,10 +86,10 @@ class Bob {
 
   //Displays the object, which is an ellipse connected by a line;
   display() {
-    noStroke();
-    fill(255, 100, 100);
-    ellipse(this.position.x, this.position.y, this.radius * 2);
-    stroke(0);
     line(this.position.x, this.position.y, this.origin.x, this.origin.y);
+    this.img.resize(this.radius * 2, this.radius * 2);
+    translate(-this.radius, 0);
+    image(img, this.position.x, this.position.y);
+    stroke(0);
   }
 }
