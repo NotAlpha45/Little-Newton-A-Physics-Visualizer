@@ -1,5 +1,5 @@
 class Mover {
-  constructor(x, y, radius) {
+  constructor(x, y, radius, img) {
     this.position = createVector(x, y);
     this.radius = radius;
     this.velocity = createVector(0, 0);
@@ -8,6 +8,7 @@ class Mover {
     // The higher the friction, the more friction will be simulated.
     this.damping = -0.7;
     this.friction = 2;
+    this.img = img;
 
     // Previous position of the object. This will help us in drawing trails.
     this.previous_position = createVector(x, y);
@@ -90,10 +91,11 @@ class Mover {
     this.previous_position.y = this.position.y;
   }
 
-  //Displays the object, which is an ellipse
+  //Displays the object, which is an apple image
   display() {
-    noStroke();
-    fill(255, 100, 100);
-    ellipse(this.position.x, this.position.y, this.radius * 2);
+    this.img.resize(this.radius*2, this.radius*2);
+    translate(-this.radius, -this.radius);
+    image(img, this.position.x, this.position.y);
+
   }
 }

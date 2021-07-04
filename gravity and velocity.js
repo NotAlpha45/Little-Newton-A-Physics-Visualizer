@@ -5,6 +5,7 @@ let angle, angle_input_field, angle_text;
 let initial_velocity, initial_velocity_input_field, initial_velocity_text;
 let gravity, gravity_input_field, gravity_text;
 let button;
+let img;
 
 function angle_input_maker() {
   angle_text = createElement("h3", "Angle (θ): ");
@@ -52,6 +53,11 @@ function button_maker(parent, posx, posy, label, func) {
   button.mousePressed(func);
   button.parent(parent);
 }
+
+function preload() {
+  img = loadImage("assets/apple.png");
+}
+
 // Sets up the screen.
 function setup() {
   canvas = createCanvas(1360, 600);
@@ -62,7 +68,7 @@ function setup() {
   buffer = createGraphics(width, height);
   buffer.background(94, 219, 211);
 
-  body = new Mover(100, 700 - 31, 20);
+  body = new Mover(100, 700 - 20, 20, img);
 
   angle_input_maker();
 
