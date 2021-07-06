@@ -12,6 +12,14 @@ class Mover {
 
     // Previous position of the object. This will help us in drawing trails.
     this.previous_position = createVector(x, y);
+    this.line_color = createVector(0, 0, 0);
+  }
+
+  // Sets line color of the object to a random color on each call.
+  set_color() {
+    this.line_color.x = Math.floor(Math.random() * 154) + 100;
+    this.line_color.y = Math.floor(Math.random() * 154) + 100;
+    this.line_color.z = Math.floor(Math.random() * 154) + 100;
   }
 
   // Sets the hight of the object from the ground.
@@ -74,7 +82,8 @@ class Mover {
 
   // Draws the trail of the object.
   draw_trail(buffer) {
-    buffer.stroke(0);
+    buffer.stroke(this.line_color.x, this.line_color.y, this.line_color.z);
+    buffer.strokeWeight(3);
 
     // Draws a line on the buffer screen from the previous position to the current position
     // which acts like a trail.
@@ -93,9 +102,8 @@ class Mover {
 
   //Displays the object, which is an apple image
   display() {
-    this.img.resize(this.radius*2, this.radius*2);
+    this.img.resize(this.radius * 2, this.radius * 2);
     translate(-this.radius, -this.radius);
     image(img, this.position.x, this.position.y);
-
   }
 }
