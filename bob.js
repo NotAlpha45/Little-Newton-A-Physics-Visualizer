@@ -86,6 +86,7 @@ class Bob {
 
   //Displays the object, which is an ellipse connected by a line;
   display() {
+    strokeWeight(3);
     line(this.position.x, this.position.y, this.origin.x, this.origin.y);
     this.img.resize(this.radius * 2, this.radius * 2);
     translate(-this.radius, 0);

@@ -7,6 +7,52 @@ let length, length_input_field, length_element;
 let damping, damping_input_field, damping_element;
 let button;
 let img;
+let period;
+// Takes input from the input fields.
+function value_input() {
+  angle = float(angle_input_field.value());
+  bob.set_angle((angle * Math.PI) / 180);
+
+  g = float(g_input_field.value());
+  bob.set_gravity(g / 10);
+
+  length = float(length_input_field.value());
+  bob.set_length(length * 10);
+
+  damping = float(damping_input_field.value());
+
+  if (damping > 1) {
+    damping = 1;
+  } else if (damping < 0) {
+    damping = 0;
+  }
+
+  bob.set_damping(damping);
+}
+
+function value_calculator() {
+  let l = length;
+  let A = (angle * Math.PI) / 180;
+  // Expansional fromula of period
+  period =
+    2 *
+    Math.PI *
+    Math.sqrt(l / g) *
+    (1 +
+      (1 / 16) * Math.pow(A, 2) +
+      (11 / 3072) * Math.pow(A, 4) +
+      (173 / 737280) * Math.pow(A, 6) +
+      (22931 / 951268147200) * Math.pow(A, 8));
+    
+  period = period.toFixed(5);
+}
+
+function text_maker(txt, position, size) {
+  textSize(size);
+  fill(0);
+  strokeWeight(0);
+  text(txt, position[0], position[1]);
+}
 
 function preload() {
   img = loadImage("assets/apple.png");
@@ -75,33 +121,15 @@ function setup() {
   Plotly.newPlot("chart", [plot_data], graph_settings);
 }
 
-// Takes input from the input fields.
-function value_input() {
-  angle = float(angle_input_field.value());
-  bob.set_angle((angle * Math.PI) / 180);
-
-  g = float(g_input_field.value());
-  bob.set_gravity(g / 10);
-
-  length = float(length_input_field.value());
-  bob.set_length(length * 10);
-
-  damping = float(damping_input_field.value());
-
-  if (damping > 1) {
-    damping = 1;
-  } else if (damping < 0) {
-    damping = 0;
-  }
-
-  bob.set_damping(damping);
-}
-
 function draw() {
   background(94, 219, 211);
   // width and height are the width and height of the screen. Builtin attributes.
   // image() will blit the buffer screen on the main screen like a rectangle.
   image(buffer, 0, 0, width, height);
+
+  value_calculator();
+  text_maker("Period (T): " + period.toString(), [10, 30], 20);
+
   bob.display();
   bob.update();
 }
