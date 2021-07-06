@@ -87,12 +87,35 @@ function value_input() {
 }
 
 function value_calculator() {
-  max_height = Math.pow(initial_velocity * Math.sin(angle), 2) / (2 * gravity);
+
+  let h0 = body_height / 10;
+  let g = gravity * 9.8;
+  let A = angle;
+  let v0 = initial_velocity;
+
+  //Flight time for trown from any height
+  let T1 =
+    (v0 * Math.sin(A) + Math.sqrt(Math.pow(v0 * Math.sin(A), 2) + 2 * g * h0)) /
+    g;
+
+  let T2 =
+    (v0 * Math.sin(A) - Math.sqrt(Math.pow(v0 * Math.sin(A), 2) + 2 * g * h0)) /
+    g;
+  if (T2 < 0) {
+    flight_time = T1.toFixed(3);
+  } else if (T1 < 0) {
+    flight_time = T2.toFixed(3);
+  } else {
+    flight_time = T1.toFixed(3);
+  }
+
+  //Maximum height
+  let t = (v0 * Math.sin(A)) / g;
+  max_height = body_height + v0 * Math.sin(A) * t - 0.5 * g * Math.pow(t, 2);
   max_height = max_height.toFixed(3);
-  flight_time = (2 * initial_velocity * Math.sin(angle)) / gravity;
-  flight_time = flight_time.toFixed(3);
-  horizontal_range =
-    (Math.pow(initial_velocity, 2) * Math.sin(2 * angle)) / gravity;
+
+  //Maximum distance / horizontal_range
+  horizontal_range = v0 * Math.cos(A) * flight_time;
   horizontal_range = horizontal_range.toFixed(3);
 }
 
@@ -146,13 +169,14 @@ function draw() {
   image(buffer, 0, 0, width, height);
 
   value_calculator();
+  
   text_maker("Max height (H): " + max_height.toString(), [10, 30], 20);
   text_maker(
     "Horizontal range (R): " + horizontal_range.toString(),
-    [10, 60],
+    [10, 70],
     20
   );
-  text_maker("Flight Time (T): " + flight_time.toString(), [10, 100], 20);
+  text_maker("Flight Time (T): " + flight_time.toString(), [10, 110], 20);
 
   body.display();
   body.update();
