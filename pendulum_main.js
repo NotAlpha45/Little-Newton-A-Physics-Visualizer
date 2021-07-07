@@ -17,7 +17,7 @@ function value_input() {
   bob.set_gravity(g / 10);
 
   length = float(length_input_field.value());
-  bob.set_length(length * 10);
+  bob.set_length(length * 100);
 
   damping = float(damping_input_field.value());
 
@@ -43,7 +43,7 @@ function value_calculator() {
       (11 / 3072) * Math.pow(A, 4) +
       (173 / 737280) * Math.pow(A, 6) +
       (22931 / 951268147200) * Math.pow(A, 8));
-    
+
   period = period.toFixed(5);
 }
 
@@ -88,7 +88,7 @@ function setup() {
   length_element = createElement("h2", "length: ");
   length_element.position(width - 254, 80);
   length_element.parent("pendulum_display");
-  length_input_field = createInput("20");
+  length_input_field = createInput("2");
   length_input_field.position(width - 180, 110);
   length_input_field.changed(value_input);
   length_input_field.parent("pendulum_display");
@@ -110,12 +110,13 @@ function setup() {
   bob.set_damping(1);
 
   let plot_data = {
-    y: [bob.position.x - width / 2 + 100],
+    // Adjusted coodinate for plotting.
+    y: [(bob.position.x - width / 2 + 100) / 100],
     type: "scatter",
   };
 
   let graph_settings = {
-    yaxis: { range: [-200, 200] },
+    yaxis: { range: [-10, 10] },
   };
 
   Plotly.newPlot("chart", [plot_data], graph_settings);
@@ -140,7 +141,7 @@ function continuous_plot() {
   Plotly.extendTraces(
     "chart",
     {
-      y: [[bob.position.x - width / 2 + 100]],
+      y: [[(bob.position.x - width / 2 + 100) / 100]],
     },
     [0]
   );
