@@ -16,6 +16,14 @@ let record_checkbox,
 let frame_count;
 let capturer;
 
+function make_recorder(frmt, frame_rate, console_display) {
+  return new CCapture({
+    format: frmt,
+    framerate: frame_rate,
+    verbose: console_display,
+  });
+}
+
 function capture_animation(recorder, time) {
   if (recording_enabled) {
     if (frame_count == 1) {
@@ -39,15 +47,22 @@ function element_maker(parent, header_size, text, pos) {
   element.position(pos[0], pos[1]);
 }
 
+function input_field_maker(parent, size, default_val, pos) {
+  field = createInput(default_val);
+  field.parent(parent);
+  field.size(size);
+  field.position(pos[0], pos[1]);
+  return field;
+}
 function angle_input_maker() {
   element_maker("projectile_simulation", "h3", "Angle (θ): ", [
     width - 250,
     20,
   ]);
-  angle_input_field = createInput("30");
-  angle_input_field.position(width - 150, 45);
-  angle_input_field.size(50);
-  angle_input_field.parent("projectile_simulation");
+  angle_input_field = input_field_maker("projectile_simulation", 50, "30", [
+    width - 150,
+    45,
+  ]);
 }
 
 function velocity_input_maker() {
@@ -55,10 +70,12 @@ function velocity_input_maker() {
     width - 327,
     60,
   ]);
-  initial_velocity_input_field = createInput("20");
-  initial_velocity_input_field.position(width - 150, 85);
-  initial_velocity_input_field.size(50);
-  initial_velocity_input_field.parent("projectile_simulation");
+  initial_velocity_input_field = input_field_maker(
+    "projectile_simulation",
+    50,
+    "20",
+    [width - 150, 85]
+  );
 }
 
 function height_input_maker() {
@@ -66,10 +83,10 @@ function height_input_maker() {
     width - 257,
     100,
   ]);
-  height_input_field = createInput("0");
-  height_input_field.position(width - 150, 125);
-  height_input_field.size(50);
-  height_input_field.parent("projectile_simulation");
+  height_input_field = input_field_maker("projectile_simulation", 50, "0", [
+    width - 150,
+    125,
+  ]);
 }
 
 function gravity_input_maker() {
@@ -77,10 +94,17 @@ function gravity_input_maker() {
     width - 265,
     140,
   ]);
-  gravity_input_field = createInput("9.8");
-  gravity_input_field.position(width - 150, 165);
-  gravity_input_field.size(50);
-  gravity_input_field.parent("projectile_simulation");
+  gravity_input_field = input_field_maker("projectile_simulation", 50, "9.8", [
+    width - 150,
+    165,
+  ]);
+}
+
+function recording_field_maker() {
+  record_input_field = input_field_maker("projectile_simulation", 50, "2", [
+    width - 150,
+    345,
+  ]);
 }
 
 function button_maker(parent, posx, posy, label, func) {
@@ -90,17 +114,18 @@ function button_maker(parent, posx, posy, label, func) {
   button.parent(parent);
 }
 
+function checkbox_maker(parent, label, default_val, position, func) {
+  checkbox = createCheckbox(label, default_val);
+  checkbox.parent(parent);
+  checkbox.position(position[0], position[1]);
+  checkbox.mousePressed(func);
+  return checkbox;
+}
+
 function text_maker(txt, position, size) {
   textSize(size);
   fill(0);
   text(txt, position[0], position[1]);
-}
-
-function recording_field_maker() {
-  record_input_field = createInput("5");
-  record_input_field.parent("projectile_simulation");
-  record_input_field.size(50);
-  record_input_field.position(width - 150, 345);
 }
 
 //Takes value input from the input fields.
@@ -169,18 +194,11 @@ function preload() {
   img = loadImage("assets/apple.png");
 }
 
-function make_recorder(frmt, frame_rate, console_display) {
-  return new CCapture({
-    format: frmt,
-    framerate: frame_rate,
-    verbose: console_display,
-  });
-}
-
 // Sets up the screen.
 function setup() {
   capturer = make_recorder("webm", 60, true);
   frame_count = 0;
+  
   background_color = createVector(255, 255, 255);
   drawing_canvas = createCanvas(1360, 600);
   drawing_canvas.position(0);
@@ -202,10 +220,13 @@ function setup() {
 
   recording_enabled = false;
 
-  record_checkbox = createCheckbox(" Record animation", false);
-  record_checkbox.parent("projectile_simulation");
-  record_checkbox.position(width - 250, 315);
-  record_checkbox.changed(recording_field_maker);
+  record_checkbox = checkbox_maker(
+    "projectile_simulation",
+    " Record animation (seconds)",
+    false,
+    [width - 250, 315],
+    recording_field_maker
+  );
 
   button_maker("projectile_simulation", width - 150, 205, "Run", value_input);
   button_maker(
