@@ -8,6 +8,50 @@ let damping, damping_input_field, damping_element;
 let button;
 let img;
 let period;
+let canvas_parent = "pendulum_display";
+
+function element_maker(parent, header_size, text, pos) {
+  element = createElement(header_size, text);
+  element.parent(parent);
+  element.position(pos[0], pos[1]);
+}
+
+function input_field_maker(parent, size, default_val, pos) {
+  field = createInput(default_val);
+  field.parent(parent);
+  field.size(size);
+  field.position(pos[0], pos[1]);
+  return field;
+}
+
+function button_maker(parent, pos, label, func) {
+  button = createButton(label);
+  button.position(pos[0], pos[1]);
+  button.mousePressed(func);
+  button.parent(parent);
+}
+
+function angle_input_maker() {
+  element_maker(canvas_parent, "h3", "Angle (θ):", [width - 270, 5]);
+  angle_input_field = input_field_maker(canvas_parent, 50, 30, [
+    width - 180,
+    30,
+  ]);
+}
+
+function gravity_input_maker() {
+  element_maker(canvas_parent, "h3", "Gravity (g):", [width - 285, 45]);
+  g_input_field = input_field_maker(canvas_parent, 50, 9.8, [width - 180, 70]);
+}
+
+function length_input_maker() {
+  element_maker(canvas_parent, "h3", "Length (l):", [width - 275, 85]);
+  length_input_field = input_field_maker(canvas_parent, 50, 2, [
+    width - 180,
+    110,
+  ]);
+}
+
 // Takes input from the input fields.
 function value_input() {
   angle = float(angle_input_field.value());
@@ -19,13 +63,7 @@ function value_input() {
   length = float(length_input_field.value());
   bob.set_length(length * 100);
 
-  damping = float(damping_input_field.value());
-
-  if (damping > 1) {
-    damping = 1;
-  } else if (damping < 0) {
-    damping = 0;
-  }
+  damping = 1;
 
   bob.set_damping(damping);
 }
@@ -61,50 +99,19 @@ function preload() {
 function setup() {
   canvas = createCanvas(900, 400);
   canvas.position(0);
-  canvas.parent("pendulum_display");
+  canvas.parent(canvas_parent);
   frameRate(60);
 
   buffer = createGraphics(width, height);
   buffer.background(94, 219, 211);
 
-  // angle_element is the h2 tag element beside the input field
-  angle_element = createElement("h2", "Angle: ");
-  angle_element.position(width - 250, 0);
-  angle_element.parent("pendulum_display");
-  // angle_input_field takes the entered value.
-  angle_input_field = createInput("30");
-  angle_input_field.position(width - 180, 30);
-  angle_input_field.changed(value_input);
-  angle_input_field.parent("pendulum_display");
+  angle_input_maker();
 
-  g_element = createElement("h2", "g: ");
-  g_element.position(width - 202, 40);
-  g_element.parent("pendulum_display");
-  g_input_field = createInput("9.8");
-  g_input_field.position(width - 180, 70);
-  g_input_field.changed(value_input);
-  g_input_field.parent("pendulum_display");
+  gravity_input_maker();
 
-  length_element = createElement("h2", "length: ");
-  length_element.position(width - 254, 80);
-  length_element.parent("pendulum_display");
-  length_input_field = createInput("2");
-  length_input_field.position(width - 180, 110);
-  length_input_field.changed(value_input);
-  length_input_field.parent("pendulum_display");
+  length_input_maker();
 
-  damping_element = createElement("h2", "damping: ");
-  damping_element.position(width - 282, 120);
-  damping_element.parent("pendulum_display");
-  damping_input_field = createInput("1");
-  damping_input_field.position(width - 180, 150);
-  damping_input_field.changed(value_input);
-  damping_input_field.parent("pendulum_display");
-
-  button = createButton("Run");
-  button.position(width - 170, 190);
-  button.mousePressed(value_input);
-  button.parent("pendulum_display");
+  button = button_maker(canvas_parent, [width - 170, 150], "Run", value_input);
 
   bob = new Bob(200, 0, 30, img);
   bob.set_damping(1);
