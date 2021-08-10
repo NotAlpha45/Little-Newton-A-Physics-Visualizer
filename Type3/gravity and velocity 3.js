@@ -3,11 +3,11 @@ let frame_rate = 60;
 let body;
 let body_height, height_input_field, height_text;
 let angle, angle_input_field, angle_text;
-let max_height, max_height_input_field, max_height_text;
+let horizontal_range, horizontal_range_input_field, horizontal_range_text;
 let gravity, gravity_input_field, gravity_text;
 let button;
 let img;
-let initial_velocity, flight_time, horizontal_range;
+let initial_velocity, flight_time, max_height;
 let record_checkbox,
   record_input_field,
   record_time,
@@ -65,15 +65,15 @@ function angle_input_maker() {
   ]);
 }
 
-function max_height_input_maker() {
-  element_maker("projectile_simulation", "h3", "Max Height (H): ", [
-    width - 305,
+function horizontal_range_input_maker() {
+  element_maker("projectile_simulation", "h3", "Horizontal Range (R): ", [
+    width - 350,
     60,
   ]);
-  max_height_input_field = input_field_maker(
+  horizontal_range_input_field = input_field_maker(
     "projectile_simulation",
     50,
-    "20",
+    "70",
     [width - 150, 85]
   );
 }
@@ -135,7 +135,7 @@ function value_input() {
     record_time = int(record_input_field.value());
   }
 
-  max_height = float(max_height_input_field.value());
+  horizontal_range = float(horizontal_range_input_field.value());
 
   gravity = float(gravity_input_field.value()) / 9.8;
 
@@ -143,7 +143,7 @@ function value_input() {
 
   angle = (float(angle_input_field.value()) * Math.PI) / 180;
 
-  value_calculator()
+  value_calculator();
 
   body.setHeight(body_height);
 
@@ -164,11 +164,10 @@ function value_calculator() {
   let h0 = body_height / 10;
   let g = gravity * 9.8;
   let A = angle;
-  let H = max_height;
+  let R = horizontal_range;
 
   // Initial velocity
-  let t = Math.pow(Math.abs((2 * (H - h0)) / g), 0.5);
-  let v0 = (g * t) / Math.sin(A);
+  let v0 = Math.sqrt((R * g) / (2 * Math.sin(A) * Math.cos(A)));
 
   initial_velocity = v0.toFixed(3);
 
@@ -188,9 +187,10 @@ function value_calculator() {
     flight_time = T1.toFixed(3);
   }
 
-  //Maximum distance / horizontal_range
-  horizontal_range = v0 * Math.cos(A) * flight_time;
-  horizontal_range = horizontal_range.toFixed(3);
+  //Maximum height
+  let t = (v0 * Math.sin(A)) / g;
+  max_height = body_height + v0 * Math.sin(A) * t - 0.5 * g * Math.pow(t, 2);
+  max_height = max_height.toFixed(3);
 }
 
 function preload() {
@@ -215,7 +215,7 @@ function setup() {
 
   height_input_maker();
 
-  max_height_input_maker();
+  horizontal_range_input_maker();
 
   gravity_input_maker();
 
@@ -244,7 +244,7 @@ function setup() {
     "Reset Display",
     setup
   );
-    
+
   body = new Mover(100, 700 - 20, 20, img);
 }
 
@@ -263,11 +263,7 @@ function draw() {
     [10, 30],
     20
   );
-  text_maker(
-    "Horizontal range (R): " + horizontal_range.toString(),
-    [10, 70],
-    20
-  );
+  text_maker("Max height (H): " + max_height.toString(), [10, 70], 20);
   text_maker("Flight Time (T): " + flight_time.toString(), [10, 110], 20);
 
   body.display();
