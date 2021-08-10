@@ -16,7 +16,7 @@ class Mover {
   }
 
   // Sets line color of the object to a random color on each call.
-  set_color() {
+  set_trail_color() {
     this.line_color.x = Math.floor(Math.random() * 154) + 100;
     this.line_color.y = Math.floor(Math.random() * 154) + 100;
     this.line_color.z = Math.floor(Math.random() * 154) + 100;
