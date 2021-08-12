@@ -167,7 +167,7 @@ function value_calculator() {
   let H = max_height;
 
   // Initial velocity
-  let t = Math.pow(Math.abs((2 * (H - h0)) / g), 0.5);
+  let t = Math.sqrt(Math.abs((2 * (H - h0)) / g));
   let v0 = (g * t) / Math.sin(A);
 
   initial_velocity = v0.toFixed(3);
