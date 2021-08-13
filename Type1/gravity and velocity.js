@@ -103,12 +103,16 @@ function gravity_input_maker() {
 function recording_field_maker() {
   record_input_field = input_field_maker("projectile_simulation", 50, "2", [
     width - 150,
-    345,
+    365,
   ]);
 }
 
 function button_maker(parent, posx, posy, label, func) {
   button = createButton(label);
+  button.style("border-radius: 10px");
+  button.style("width: 150px");
+  button.style("height: 30px");
+  button.style("font-size: 16px");
   button.position(posx, posy);
   button.mousePressed(func);
   button.parent(parent);
@@ -116,6 +120,9 @@ function button_maker(parent, posx, posy, label, func) {
 
 function checkbox_maker(parent, label, default_val, position, func) {
   checkbox = createCheckbox(label, default_val);
+  
+  checkbox.style("font-size: 20px");
+
   checkbox.parent(parent);
   checkbox.position(position[0], position[1]);
   checkbox.mousePressed(func);
@@ -226,7 +233,7 @@ function setup() {
     "projectile_simulation",
     " Record animation (seconds)",
     false,
-    [width - 250, 315],
+    [width - 250, 335],
     recording_field_maker
   );
 
