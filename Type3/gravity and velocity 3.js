@@ -1,133 +1,3 @@
-let buffer;
-let frame_rate = 60;
-let body;
-let body_height, height_input_field, height_text;
-let angle, angle_input_field, angle_text;
-let horizontal_range, horizontal_range_input_field, horizontal_range_text;
-let gravity, gravity_input_field, gravity_text;
-let button;
-let img;
-let initial_velocity, flight_time, max_height;
-let record_checkbox,
-  record_input_field,
-  record_time,
-  recording_enabled = false;
-// Counts the number of frames recorded.
-let frame_count;
-let capturer;
-
-function make_recorder(frmt, frame_rate, console_display) {
-  return new CCapture({
-    format: frmt,
-    framerate: frame_rate,
-    verbose: console_display,
-  });
-}
-
-function capture_animation(recorder, time) {
-  if (recording_enabled) {
-    if (frame_count == 1) {
-      recorder.start();
-    }
-    if (frame_count < frame_rate * time) {
-      // Captures every frame until certain number of frames reached
-      recorder.capture(canvas);
-    } else if (frame_count == frame_rate * time) {
-      // If certain frames reached, stop counting
-      recorder.save();
-      recorder.stop();
-    }
-    frame_count++;
-  }
-}
-
-function element_maker(parent, header_size, text, pos) {
-  element = createElement(header_size, text);
-  element.parent(parent);
-  element.position(pos[0], pos[1]);
-}
-
-function input_field_maker(parent, size, default_val, pos) {
-  field = createInput(default_val);
-  field.parent(parent);
-  field.size(size);
-  field.position(pos[0], pos[1]);
-  return field;
-}
-function angle_input_maker() {
-  element_maker("projectile_simulation", "h3", "Angle (θ): ", [
-    width - 250,
-    20,
-  ]);
-  angle_input_field = input_field_maker("projectile_simulation", 50, "30", [
-    width - 150,
-    45,
-  ]);
-}
-
-function horizontal_range_input_maker() {
-  element_maker("projectile_simulation", "h3", "Horizontal Range (R): ", [
-    width - 350,
-    60,
-  ]);
-  horizontal_range_input_field = input_field_maker(
-    "projectile_simulation",
-    50,
-    "70",
-    [width - 150, 85]
-  );
-}
-
-function height_input_maker() {
-  element_maker("projectile_simulation", "h3", "Height (h): ", [
-    width - 257,
-    100,
-  ]);
-  height_input_field = input_field_maker("projectile_simulation", 50, "0", [
-    width - 150,
-    125,
-  ]);
-}
-
-function gravity_input_maker() {
-  element_maker("projectile_simulation", "h3", "Gravity (g):", [
-    width - 265,
-    140,
-  ]);
-  gravity_input_field = input_field_maker("projectile_simulation", 50, "9.8", [
-    width - 150,
-    165,
-  ]);
-}
-
-function recording_field_maker() {
-  record_input_field = input_field_maker("projectile_simulation", 50, "2", [
-    width - 150,
-    345,
-  ]);
-}
-
-function button_maker(parent, posx, posy, label, func) {
-  button = createButton(label);
-  button.position(posx, posy);
-  button.mousePressed(func);
-  button.parent(parent);
-}
-
-function checkbox_maker(parent, label, default_val, position, func) {
-  checkbox = createCheckbox(label, default_val);
-  checkbox.parent(parent);
-  checkbox.position(position[0], position[1]);
-  checkbox.mousePressed(func);
-  return checkbox;
-}
-
-function text_maker(txt, position, size) {
-  textSize(size);
-  fill(0);
-  text(txt, position[0], position[1]);
-}
-
 //Takes value input from the input fields.
 function value_input() {
   if (record_checkbox.checked()) {
@@ -135,7 +5,7 @@ function value_input() {
     record_time = int(record_input_field.value());
   }
 
-  horizontal_range = float(horizontal_range_input_field.value());
+  max_height = float(max_height_input_field.value());
 
   gravity = float(gravity_input_field.value()) / 9.8;
 
@@ -152,22 +22,15 @@ function value_input() {
   body.setGravity(gravity);
 }
 
-// Resets the object by redefining it.
-function reset_obj() {
-  background(94, 219, 211);
-  image(buffer, 0, 0, width, height);
-  body = new Mover(100, 700 - 20, 20, img);
-  body.set_trail_color();
-}
-
 function value_calculator() {
   let h0 = body_height / 10;
   let g = gravity * 9.8;
   let A = angle;
-  let R = horizontal_range;
+  let H = max_height;
 
   // Initial velocity
-  let v0 = Math.sqrt((R * g) / (2 * Math.sin(A) * Math.cos(A)));
+  let t = Math.sqrt(Math.abs((2 * (H - h0)) / g));
+  let v0 = (g * t) / Math.sin(A);
 
   initial_velocity = v0.toFixed(3);
 
@@ -187,10 +50,9 @@ function value_calculator() {
     flight_time = T1.toFixed(3);
   }
 
-  //Maximum height
-  let t = (v0 * Math.sin(A)) / g;
-  max_height = body_height + v0 * Math.sin(A) * t - 0.5 * g * Math.pow(t, 2);
-  max_height = max_height.toFixed(3);
+  //Maximum distance / horizontal_range
+  horizontal_range = v0 * Math.cos(A) * flight_time;
+  horizontal_range = horizontal_range.toFixed(3);
 }
 
 function preload() {
@@ -211,13 +73,13 @@ function setup() {
   buffer = createGraphics(width, height);
   buffer.background(background_color.x, background_color.y, background_color.z);
 
-  angle_input_maker();
+  angle_input_maker([width - 250, 20], [width - 150, 45], 30);
 
-  height_input_maker();
+  height_input_maker([width - 257, 100], [width - 150, 125], 0);
 
-  horizontal_range_input_maker();
+  max_height_input_maker([width - 350, 60], [width - 150, 85], 20);
 
-  gravity_input_maker();
+  gravity_input_maker([width - 265, 140], [width - 150, 165], 9.8);
 
   recording_enabled = false;
 
@@ -225,24 +87,34 @@ function setup() {
     "projectile_simulation",
     " Record animation (seconds)",
     false,
-    [width - 250, 315],
+    [width - 250, 335],
     recording_field_maker
   );
 
-  button_maker("projectile_simulation", width - 150, 205, "Run", value_input);
   button_maker(
     "projectile_simulation",
     width - 150,
-    245,
+    200,
+    "Run",
+    value_input,
+    run_button_attributes
+  );
+
+  button_maker(
+    "projectile_simulation",
+    width - 150,
+    240,
     "Reset Object",
-    reset_obj
+    reset_obj,
+    reset_obj_button_attributes
   );
   button_maker(
     "projectile_simulation",
     width - 150,
-    285,
+    280,
     "Reset Display",
-    setup
+    setup,
+    reset_disp_button_attributes
   );
 
   body = new Mover(100, 700 - 20, 20, img);
@@ -263,7 +135,11 @@ function draw() {
     [10, 30],
     20
   );
-  text_maker("Max height (H): " + max_height.toString(), [10, 70], 20);
+  text_maker(
+    "Horizontal range (R): " + horizontal_range.toString(),
+    [10, 70],
+    20
+  );
   text_maker("Flight Time (T): " + flight_time.toString(), [10, 110], 20);
 
   body.display();

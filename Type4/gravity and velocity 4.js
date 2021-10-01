@@ -1,134 +1,4 @@
-let buffer;
-let frame_rate = 60;
-let body;
-let body_height, height_input_field, height_text;
-let horizontal_range, horizontal_range_input_field, horizontal_range_text;
-let maximum_height, maximum_height_input_field, maximum_height_text;
-let gravity, gravity_input_field, gravity_text;
-let button;
-let img;
-let initial_velocity, flight_time, angle;
-let record_checkbox,
-  record_input_field,
-  record_time,
-  recording_enabled = false;
-// Counts the number of frames recorded.
-let frame_count;
-let capturer;
-
-function make_recorder(frmt, frame_rate, console_display) {
-  return new CCapture({
-    format: frmt,
-    framerate: frame_rate,
-    verbose: console_display,
-  });
-}
-
-function capture_animation(recorder, time) {
-  if (recording_enabled) {
-    if (frame_count == 1) {
-      recorder.start();
-    }
-    if (frame_count < frame_rate * time) {
-      // Captures every frame until certain number of frames reached
-      recorder.capture(canvas);
-    } else if (frame_count == frame_rate * time) {
-      // If certain frames reached, stop counting
-      recorder.save();
-      recorder.stop();
-    }
-    frame_count++;
-  }
-}
-
-function element_maker(parent, header_size, text, pos) {
-  element = createElement(header_size, text);
-  element.parent(parent);
-  element.position(pos[0], pos[1]);
-}
-
-function input_field_maker(parent, size, default_val, pos) {
-  field = createInput(default_val);
-  field.parent(parent);
-  field.size(size);
-  field.position(pos[0], pos[1]);
-  return field;
-}
-function horizontal_range_input_maker() {
-  element_maker("projectile_simulation", "h3", "Horizontal Range (R): ", [
-    width - 350,
-    20,
-  ]);
-  horizontal_range_input_field = input_field_maker(
-    "projectile_simulation",
-    50,
-    "30",
-    [width - 150, 45]
-  );
-}
-
-function maximum_height_input_maker() {
-  element_maker("projectile_simulation", "h3", "Maximum Height (H): ", [
-    width - 350,
-    60,
-  ]);
-  maximum_height_input_field = input_field_maker(
-    "projectile_simulation",
-    50,
-    "20",
-    [width - 150, 85]
-  );
-}
-
-function height_input_maker() {
-  element_maker("projectile_simulation", "h3", "Height (h): ", [
-    width - 257,
-    100,
-  ]);
-  height_input_field = input_field_maker("projectile_simulation", 50, "0", [
-    width - 150,
-    125,
-  ]);
-}
-
-function gravity_input_maker() {
-  element_maker("projectile_simulation", "h3", "Gravity (g):", [
-    width - 265,
-    140,
-  ]);
-  gravity_input_field = input_field_maker("projectile_simulation", 50, "9.8", [
-    width - 150,
-    165,
-  ]);
-}
-
-function recording_field_maker() {
-  record_input_field = input_field_maker("projectile_simulation", 50, "2", [
-    width - 150,
-    345,
-  ]);
-}
-
-function button_maker(parent, posx, posy, label, func) {
-  button = createButton(label);
-  button.position(posx, posy);
-  button.mousePressed(func);
-  button.parent(parent);
-}
-
-function checkbox_maker(parent, label, default_val, position, func) {
-  checkbox = createCheckbox(label, default_val);
-  checkbox.parent(parent);
-  checkbox.position(position[0], position[1]);
-  checkbox.mousePressed(func);
-  return checkbox;
-}
-
-function text_maker(txt, position, size) {
-  textSize(size);
-  fill(0);
-  text(txt, position[0], position[1]);
-}
+body_height = 0;
 
 //Takes value input from the input fields.
 function value_input() {
@@ -137,11 +7,9 @@ function value_input() {
     record_time = int(record_input_field.value());
   }
 
-  maximum_height = float(maximum_height_input_field.value());
+  max_height = float(max_height_input_field.value());
 
   gravity = float(gravity_input_field.value()) / 9.8;
-
-  body_height = float(height_input_field.value()) * 10;
 
   horizontal_range = float(horizontal_range_input_field.value());
 
@@ -155,19 +23,11 @@ function value_input() {
   body.setGravity(gravity);
 }
 
-// Resets the object by redefining it.
-function reset_obj() {
-  background(94, 219, 211);
-  image(buffer, 0, 0, width, height);
-  body = new Mover(100, 700 - 20, 20, img);
-  body.set_trail_color();
-}
-
 function value_calculator() {
   let h0 = body_height / 10;
   let g = gravity * 9.8;
   let R = horizontal_range;
-  let H = maximum_height;
+  let H = max_height;
 
   // Flight time
   let T;
@@ -212,13 +72,11 @@ function setup() {
 
   body = new Mover(100, 700 - 20, 20, img);
 
-  horizontal_range_input_maker();
+  horizontal_range_input_maker([width - 350, 20], [width - 150, 45], 30);
 
-  height_input_maker();
+  max_height_input_maker([width - 350, 60], [width - 150, 85], 20);
 
-  maximum_height_input_maker();
-
-  gravity_input_maker();
+  gravity_input_maker([width - 265, 100], [width - 150, 125], 9.8);
 
   recording_enabled = false;
 
@@ -230,20 +88,23 @@ function setup() {
     recording_field_maker
   );
 
-  button_maker("projectile_simulation", width - 150, 205, "Run", value_input);
+  button_maker("projectile_simulation", width - 150, 175, "Run", value_input, run_button_attributes);
+
   button_maker(
     "projectile_simulation",
     width - 150,
-    245,
+    215,
     "Reset Object",
-    reset_obj
+    reset_obj,
+    reset_obj_button_attributes
   );
   button_maker(
     "projectile_simulation",
     width - 150,
-    285,
+    255,
     "Reset Display",
-    setup
+    setup,
+    reset_disp_button_attributes
   );
 }
 
