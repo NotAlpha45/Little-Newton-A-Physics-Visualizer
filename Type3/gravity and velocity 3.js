@@ -73,7 +73,7 @@ function setup() {
   buffer = createGraphics(width, height);
   buffer.background(background_color.x, background_color.y, background_color.z);
 
-  angle_input_maker([width - 250, 20], [width - 150, 45], 30);
+  angle_input_maker([width - 250, 20], [width - 150, 45], 45);
 
   height_input_maker([width - 257, 100], [width - 150, 125], 0);
 
