@@ -1,0 +1,11 @@
+let bob;
+let datapoint_count = 0;
+let MAX_DATAPOINT = 500;
+let angle, angle_input_field, angle_element;
+let g, g_input_field, g_element;
+let length, length_input_field, length_element;
+let damping, damping_input_field, damping_element;
+let button;
+let img;
+let period;
+let canvas_parent = "pendulum_display";
