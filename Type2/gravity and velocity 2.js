@@ -29,7 +29,11 @@ function value_calculator() {
   let R = horizontal_range;
 
   // Initial velocity
-  let v0 = Math.sqrt((R * g) / (2 * Math.sin(A) * Math.cos(A)));
+  // let v0 = Math.sqrt((R * g) / (2 * Math.sin(A) * Math.cos(A)));
+
+  let v0 = Math.sqrt(
+    (g * R * R) / ((R * Math.tan(A) + h0) * 2 * Math.cos(A) * Math.cos(A))
+  );
 
   initial_velocity = v0.toFixed(3);
 
@@ -51,8 +55,7 @@ function value_calculator() {
 
   //Maximum height
   let t = (v0 * Math.sin(A)) / g;
-  max_height =
-    h0 + v0 * Math.sin(A) * t - 0.5 * g * Math.pow(t, 2);
+  max_height = h0 + v0 * Math.sin(A) * t - 0.5 * g * Math.pow(t, 2);
   max_height = max_height.toFixed(3);
 }
 
@@ -76,9 +79,9 @@ function setup() {
 
   angle_input_maker([width - 250, 20], [width - 150, 45], 30);
 
-  height_input_maker([width - 257, 100], [width - 150, 125], 0);
-
   horizontal_range_input_maker([width - 350, 60], [width - 150, 85], 70);
+
+  height_input_maker([width - 257, 100], [width - 150, 125], 0);
 
   gravity_input_maker([width - 265, 140], [width - 150, 165], 9.8);
 
