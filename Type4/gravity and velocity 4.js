@@ -1,4 +1,4 @@
-body_height = 0;
+body_height = 100;
 
 //Takes value input from the input fields.
 function value_input() {
@@ -9,9 +9,11 @@ function value_input() {
 
   max_height = float(max_height_input_field.value());
 
-  gravity = float(gravity_input_field.value()) / 9.8;
-
   horizontal_range = float(horizontal_range_input_field.value());
+
+  body_height = float(height_input_field.value()) * 10;
+
+  gravity = float(gravity_input_field.value()) / 9.8;
 
   value_calculator();
 
@@ -62,38 +64,55 @@ function setup() {
   frame_count = 0;
 
   background_color = createVector(255, 255, 255);
-  drawing_canvas = createCanvas(1360, 600);
+  drawing_canvas = createCanvas(canvasSize[0], canvasSize[1]);
   drawing_canvas.position(0);
   drawing_canvas.parent("projectile_simulation");
   frameRate(frame_rate);
+
   // buffer is a secondary surface that we will draw our trail on.
   buffer = createGraphics(width, height);
   buffer.background(background_color.x, background_color.y, background_color.z);
 
-  body = new Mover(100, 700 - 20, 20, img);
-
-  horizontal_range_input_maker([width - 350, 20], [width - 150, 45], 30);
-
-  max_height_input_maker([width - 350, 60], [width - 150, 85], 20);
-
-  gravity_input_maker([width - 265, 100], [width - 150, 125], 9.8);
-
+  body = new Mover(100, 700 - 20, body_radius, img);
   recording_enabled = false;
 
-  record_checkbox = checkbox_maker(
-    "projectile_simulation",
-    " Record animation (seconds)",
-    false,
-    [width - 250, 315],
-    recording_field_maker
+  horizontal_range_input_maker(
+    [width - 350, element_height_anchor],
+    [width - 150, input_field_height_anchor],
+    30
   );
 
-  button_maker("projectile_simulation", width - 150, 175, "Run", value_input, run_button_attributes);
+  max_height_input_maker(
+    [width - 350, element_height_anchor + element_distance],
+    [width - 150, input_field_height_anchor + input_field_distance],
+    20
+  );
+
+  height_input_maker(
+    [width - 257, element_height_anchor + element_distance * 2],
+    [width - 150, input_field_height_anchor + input_field_distance * 2],
+    0
+  );
+
+  gravity_input_maker(
+    [width - 265, element_height_anchor + element_distance * 3],
+    [width - 150, input_field_height_anchor + input_field_distance * 3],
+    9.8
+  );
 
   button_maker(
     "projectile_simulation",
     width - 150,
-    215,
+    button_height_anchor,
+    "Run",
+    value_input,
+    run_button_attributes
+  );
+
+  button_maker(
+    "projectile_simulation",
+    width - 150,
+    button_height_anchor + button_distance,
     "Reset Object",
     reset_obj,
     reset_obj_button_attributes
@@ -101,10 +120,18 @@ function setup() {
   button_maker(
     "projectile_simulation",
     width - 150,
-    255,
+    button_height_anchor + button_distance * 2,
     "Reset Display",
     setup,
     reset_disp_button_attributes
+  );
+
+  record_checkbox = checkbox_maker(
+    "projectile_simulation",
+    " Record animation (seconds)",
+    false,
+    [width - 250, button_height_anchor + button_distance * 3],
+    recording_field_maker
   );
 }
 

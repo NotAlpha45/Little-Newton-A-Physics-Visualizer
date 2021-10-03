@@ -69,7 +69,7 @@ function setup() {
   frame_count = 0;
 
   background_color = createVector(255, 255, 255);
-  drawing_canvas = createCanvas(1360, 600);
+  drawing_canvas = createCanvas(canvasSize[0], canvasSize[1]);
   drawing_canvas.position(0);
   drawing_canvas.parent("projectile_simulation");
   frameRate(frame_rate);
@@ -77,28 +77,38 @@ function setup() {
   buffer = createGraphics(width, height);
   buffer.background(background_color.x, background_color.y, background_color.z);
 
-  angle_input_maker([width - 250, 20], [width - 150, 45], 30);
-
-  horizontal_range_input_maker([width - 350, 60], [width - 150, 85], 70);
-
-  height_input_maker([width - 257, 100], [width - 150, 125], 0);
-
-  gravity_input_maker([width - 265, 140], [width - 150, 165], 9.8);
+  body = new Mover(100, 700 - 20, body_radius, img);
 
   recording_enabled = false;
 
-  record_checkbox = checkbox_maker(
-    "projectile_simulation",
-    " Record animation (seconds)",
-    false,
-    [width - 250, 335],
-    recording_field_maker
+  angle_input_maker(
+    [width - 250, element_height_anchor],
+    [width - 150, input_field_height_anchor],
+    30
+  );
+
+  horizontal_range_input_maker(
+    [width - 350, element_height_anchor + element_distance],
+    [width - 150, input_field_height_anchor + input_field_distance],
+    70
+  );
+
+  height_input_maker(
+    [width - 257, element_height_anchor + element_distance * 2],
+    [width - 150, input_field_height_anchor + input_field_distance * 2],
+    0
+  );
+
+  gravity_input_maker(
+    [width - 265, element_height_anchor + element_distance * 3],
+    [width - 150, input_field_height_anchor + input_field_distance * 3],
+    9.8
   );
 
   button_maker(
     "projectile_simulation",
     width - 150,
-    200,
+    button_height_anchor,
     "Run",
     value_input,
     run_button_attributes
@@ -107,7 +117,7 @@ function setup() {
   button_maker(
     "projectile_simulation",
     width - 150,
-    240,
+    button_height_anchor + button_distance,
     "Reset Object",
     reset_obj,
     reset_obj_button_attributes
@@ -115,13 +125,19 @@ function setup() {
   button_maker(
     "projectile_simulation",
     width - 150,
-    280,
+    button_height_anchor + button_distance * 2,
     "Reset Display",
     setup,
     reset_disp_button_attributes
   );
 
-  body = new Mover(100, 700 - 20, 20, img);
+  record_checkbox = checkbox_maker(
+    "projectile_simulation",
+    " Record animation (seconds)",
+    false,
+    [width - 250, button_height_anchor + button_distance * 3],
+    recording_field_maker
+  );
 }
 
 // Draws all the objects in a loop.

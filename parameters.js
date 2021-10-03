@@ -23,8 +23,24 @@ let reset_disp_button_attributes = [
   "border: 3px solid rgb(255, 0, 0)",
 ];
 
-let input_field_label_height_anchor = 20,
-  input_field_height_anchor = 45;
+let input_field_attributes = [
+  "height: 24px",
+  "border-radius: 10px",
+  "border: 3px solid teal",
+];
+
+let canvasSize = [1360, 700];
+
+let body_radius = 15;
+
+let element_height_anchor = 20,
+  element_distance = 40;
+
+let input_field_height_anchor = 45,
+  input_field_distance = 40;
+
+let button_height_anchor = 250,
+  button_distance = 40;
 
 let record_checkbox,
   record_input_field,

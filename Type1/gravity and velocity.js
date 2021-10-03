@@ -60,11 +60,8 @@ function preload() {
 
 // Sets up the screen.
 function setup() {
-  capturer = make_recorder("webm", 60, true);
-  frame_count = 0;
-
   background_color = createVector(255, 255, 255);
-  drawing_canvas = createCanvas(1360, 600);
+  drawing_canvas = createCanvas(canvasSize[0], canvasSize[1]);
   drawing_canvas.position(0);
   drawing_canvas.parent("projectile_simulation");
   frameRate(frame_rate);
@@ -72,46 +69,41 @@ function setup() {
   buffer = createGraphics(width, height);
   buffer.background(background_color.x, background_color.y, background_color.z);
 
-  body = new Mover(100, 700 - 20, 20, img);
+  body = new Mover(100, 700 - 20, body_radius, img);
+
+  capturer = make_recorder("webm", 60, true);
+  frame_count = 0;
 
   angle_input_maker(
-    [width - 250, input_field_label_height_anchor],
+    [width - 250, element_height_anchor],
     [width - 150, input_field_height_anchor],
     30
   );
 
   velocity_input_maker(
-    [width - 327, input_field_label_height_anchor + 40],
-    [width - 150, input_field_height_anchor + 40],
+    [width - 327, element_height_anchor + element_distance],
+    [width - 150, input_field_height_anchor + input_field_distance],
     20
   );
 
   height_input_maker(
-    [width - 257, input_field_label_height_anchor + 40 * 2],
-    [width - 150, input_field_height_anchor + 40 * 2],
+    [width - 257, element_height_anchor + element_distance * 2],
+    [width - 150, input_field_height_anchor + input_field_distance * 2],
     0
   );
 
   gravity_input_maker(
-    [width - 265, input_field_label_height_anchor + 40 * 3],
-    [width - 150, input_field_height_anchor + 40 * 3],
+    [width - 265, element_height_anchor + element_distance * 3],
+    [width - 150, input_field_height_anchor + input_field_distance * 3],
     9.8
   );
 
   recording_enabled = false;
 
-  record_checkbox = checkbox_maker(
-    "projectile_simulation",
-    " Record animation (seconds)",
-    false,
-    [width - 250, 335],
-    recording_field_maker
-  );
-
   button_maker(
     "projectile_simulation",
     width - 150,
-    200,
+    button_height_anchor,
     "Run",
     value_input,
     run_button_attributes
@@ -120,7 +112,7 @@ function setup() {
   button_maker(
     "projectile_simulation",
     width - 150,
-    240,
+    button_height_anchor + button_distance,
     "Reset Object",
     reset_obj,
     reset_obj_button_attributes
@@ -128,10 +120,18 @@ function setup() {
   button_maker(
     "projectile_simulation",
     width - 150,
-    280,
+    button_height_anchor + button_distance * 2,
     "Reset Display",
     setup,
     reset_disp_button_attributes
+  );
+
+  record_checkbox = checkbox_maker(
+    "projectile_simulation",
+    " Record animation (seconds)",
+    false,
+    [width - 250, button_height_anchor + button_distance * 3],
+    recording_field_maker
   );
 }
 

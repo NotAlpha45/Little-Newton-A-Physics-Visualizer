@@ -65,7 +65,7 @@ function setup() {
   frame_count = 0;
 
   background_color = createVector(255, 255, 255);
-  drawing_canvas = createCanvas(1360, 600);
+  drawing_canvas = createCanvas(canvasSize[0], canvasSize[1]);
   drawing_canvas.position(0);
   drawing_canvas.parent("projectile_simulation");
   frameRate(frame_rate);
@@ -82,19 +82,12 @@ function setup() {
   gravity_input_maker([width - 265, 140], [width - 150, 165], 9.8);
 
   recording_enabled = false;
-
-  record_checkbox = checkbox_maker(
-    "projectile_simulation",
-    " Record animation (seconds)",
-    false,
-    [width - 250, 335],
-    recording_field_maker
-  );
+  body = new Mover(100, 700 - 20, body_radius, img);
 
   button_maker(
     "projectile_simulation",
     width - 150,
-    200,
+    button_height_anchor,
     "Run",
     value_input,
     run_button_attributes
@@ -103,7 +96,7 @@ function setup() {
   button_maker(
     "projectile_simulation",
     width - 150,
-    240,
+    button_height_anchor + button_distance,
     "Reset Object",
     reset_obj,
     reset_obj_button_attributes
@@ -111,13 +104,19 @@ function setup() {
   button_maker(
     "projectile_simulation",
     width - 150,
-    280,
+    button_height_anchor + button_distance * 2,
     "Reset Display",
     setup,
     reset_disp_button_attributes
   );
 
-  body = new Mover(100, 700 - 20, 20, img);
+  record_checkbox = checkbox_maker(
+    "projectile_simulation",
+    " Record animation (seconds)",
+    false,
+    [width - 250, button_height_anchor + button_distance * 3],
+    recording_field_maker
+  );
 }
 
 // Draws all the objects in a loop.

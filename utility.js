@@ -22,6 +22,11 @@ function input_field_maker(parent, size, default_val, pos) {
   field.parent(parent);
   field.size(size);
   field.position(pos[0], pos[1]);
+
+  input_field_attributes.forEach(function (attribute) {
+    field.style(attribute);
+  });
+
   return field;
 }
 
@@ -117,7 +122,7 @@ function gravity_input_maker(element_pos, input_field_pos, default_val) {
 function recording_field_maker() {
   record_input_field = input_field_maker("projectile_simulation", 50, "2", [
     width - 150,
-    365,
+    button_height_anchor + button_distance * 4,
   ]);
 }
 
@@ -125,7 +130,7 @@ function recording_field_maker() {
 function reset_obj() {
   background(94, 219, 211);
   image(buffer, 0, 0, width, height);
-  body = new Mover(100, 700 - 20, 20, img);
+  body = new Mover(100, 700 - 20, body_radius, img);
   body.set_trail_color();
 }
 
