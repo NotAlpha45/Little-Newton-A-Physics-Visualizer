@@ -11,7 +11,7 @@ class Bob {
     this.damping = 1;
     this.gravity = 0.98;
     // origin is the attaching position of the string.
-    this.origin = createVector(width / 2 - 100, 0);
+    this.origin = createVector(width / 2 - bob_position_offset, 0);
     // Position is the position of the bob.
     this.position = createVector();
 

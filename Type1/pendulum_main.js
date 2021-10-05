@@ -3,11 +3,11 @@ function value_input() {
   angle = float(angle_input_field.value());
   bob.set_angle((angle * Math.PI) / 180);
 
-  g = float(g_input_field.value());
+  g = float(gravity_input_field.value());
   bob.set_gravity(g / 10);
 
-  length = float(length_input_field.value());
-  bob.set_length(length * 100);
+  string_length = float(length_input_field.value());
+  bob.set_length(string_length * 100);
 
   damping = 1;
 
@@ -15,7 +15,7 @@ function value_input() {
 }
 
 function value_calculator() {
-  let l = length;
+  let l = string_length;
   let A = (angle * Math.PI) / 180;
   // Expansional fromula of period
   period =
@@ -36,28 +36,47 @@ function preload() {
 }
 
 function setup() {
-  canvas = createCanvas(900, 400);
-  canvas.position(0);
+  canvas = createCanvas(canvasSize[0], canvasSize[1]);
+  canvas.position(0, 0, "relative");
   canvas.parent(canvas_parent);
   frameRate(60);
 
   buffer = createGraphics(width, height);
-  buffer.background(94, 219, 211);
+  // buffer.background(94, 219, 211);
+  buffer.background(255, 255, 255);
 
-  angle_input_maker();
+  angle_input_maker(
+    [width + 175, element_height_anchor],
+    [width + 310, input_field_height_anchor],
+    30
+  );
 
-  gravity_input_maker();
+  gravity_input_maker(
+    [width + 165, element_height_anchor + element_distance],
+    [width + 310, input_field_height_anchor + input_field_distance],
+    9.8
+  );
 
-  length_input_maker();
+  length_input_maker(
+    [width + 175, element_height_anchor + element_distance * 2],
+    [width + 310, input_field_height_anchor + input_field_distance * 2],
+    2
+  );
 
-  button = button_maker(canvas_parent, [width - 170, 150], "Run", value_input);
+  button = button_maker(
+    canvas_parent,
+    [width + 310, button_height_anchor],
+    "Run",
+    value_input,
+    run_button_attributes
+  );
 
-  bob = new Bob(200, 0, 30, img);
+  bob = new Bob(200, 0, body_radius, img);
   bob.set_damping(1);
 
   let plot_data = {
     // Adjusted coodinate for plotting.
-    y: [(bob.position.x - width / 2 + 100) / 100],
+    y: [(bob.position.x - width / 2 + bob_position_offset) / 100],
     type: "scatter",
   };
 
@@ -69,13 +88,14 @@ function setup() {
 }
 
 function draw() {
-  background(94, 219, 211);
+  // background(94, 219, 211);
+  background(255, 255, 255);
   // width and height are the width and height of the screen. Builtin attributes.
   // image() will blit the buffer screen on the main screen like a rectangle.
   image(buffer, 0, 0, width, height);
 
   value_calculator();
-  text_maker("Period (T): " + period.toString(), [10, 30], 20);
+  text_maker("⌚ Period (T): " + period.toString() + " s", [10, 30], 24);
 
   bob.display();
   bob.update();
@@ -87,7 +107,7 @@ function continuous_plot() {
   Plotly.extendTraces(
     "chart",
     {
-      y: [[(bob.position.x - width / 2 + 100) / 100]],
+      y: [[(bob.position.x - width / 2 + bob_position_offset) / 100]],
     },
     [0]
   );
