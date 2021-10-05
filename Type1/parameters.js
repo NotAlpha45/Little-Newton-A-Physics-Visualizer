@@ -30,6 +30,8 @@ let canvasSize = [800, 500];
 
 let body_radius = 15;
 
+let text_size = 24;
+
 let run_button_attributes = [
   "padding: 5px 5px",
   "font-size: 16px",
