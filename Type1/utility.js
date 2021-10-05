@@ -40,10 +40,10 @@ function button_maker(parent, pos, label, func, style_attributes) {
   button.parent(parent);
 }
 
-function text_maker(txt, position, size) {
+function text_maker(txt, position, size, color) {
   textSize(size);
   // The same color as in the html.
-  fill("yellowgreen");
+  fill(color);
   strokeWeight(0);
   text(txt, position[0], position[1]);
 }

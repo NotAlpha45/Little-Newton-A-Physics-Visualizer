@@ -95,7 +95,12 @@ function draw() {
   image(buffer, 0, 0, width, height);
 
   value_calculator();
-  text_maker("⌚ Period (T): " + period.toString() + " s", [10, 30], 24);
+  text_maker(
+    "⌚ Period (T): " + period.toString() + " s",
+    [10, 30],
+    24,
+    "yellowgreen"
+  );
 
   bob.display();
   bob.update();

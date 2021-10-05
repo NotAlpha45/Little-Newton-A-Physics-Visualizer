@@ -3,7 +3,8 @@
   font-family: kalpurush;
 }
 .container1 {
-  position: relative;
+  /* Sticky so that the canvas stays in place*/
+  position: sticky;
   top: 30px;
   text-align: center;
 }
