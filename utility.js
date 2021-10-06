@@ -11,16 +11,16 @@ function button_maker(parent, posx, posy, label, func, style_attributes) {
   button.parent(parent);
 }
 
-function text_maker(txt, position, size) {
+function text_maker(txt, position, size, color) {
   textSize(size);
-  fill(0);
+  textStyle(BOLD);
+  fill(color);
   text(txt, position[0], position[1]);
 }
 
-function input_field_maker(parent, size, default_val, pos) {
+function input_field_maker(parent, default_val, pos, input_field_attributes) {
   field = createInput(default_val);
   field.parent(parent);
-  field.size(size);
   field.position(pos[0], pos[1]);
 
   input_field_attributes.forEach(function (attribute) {
@@ -43,10 +43,14 @@ function checkbox_maker(parent, label, default_val, position, func) {
   return checkbox;
 }
 
-function element_maker(parent, header_size, text, pos) {
+function element_maker(parent, header_size, text, pos, element_attributes) {
   element = createElement(header_size, text);
   element.parent(parent);
   element.position(pos[0], pos[1]);
+  // element.style("font-family: cursive");
+  element_attributes.forEach(function (attribute) {
+    element.style(attribute);
+  });
 }
 
 function make_recorder(frmt, frame_rate, console_display) {
@@ -74,56 +78,26 @@ function capture_animation(recorder, time) {
   }
 }
 
-function angle_input_maker(element_pos, input_field_pos, default_val) {
-  element_maker("projectile_simulation", "h3", "Angle (θ): ", element_pos);
-  angle_input_field = input_field_maker(
-    "projectile_simulation",
-    50,
-    default_val,
-    input_field_pos
-  );
-}
-
-function velocity_input_maker(element_pos, input_field_pos, default_val) {
-  element_maker(
-    "projectile_simulation",
-    "h3",
-    "Initial Velocity (v₀): ",
-    element_pos
-  );
-  initial_velocity_input_field = input_field_maker(
-    "projectile_simulation",
-    50,
-    default_val,
-    input_field_pos
-  );
-}
-
-function height_input_maker(element_pos, input_field_pos, default_val) {
-  element_maker("projectile_simulation", "h3", "Height (h): ", element_pos);
-  height_input_field = input_field_maker(
-    "projectile_simulation",
-    50,
-    default_val,
-    input_field_pos
-  );
-}
-
-function gravity_input_maker(element_pos, input_field_pos, default_val) {
-  element_maker("projectile_simulation", "h3", "Gravity (g):", element_pos);
-  gravity_input_field = input_field_maker(
-    "projectile_simulation",
-    50,
-    default_val,
-    input_field_pos
-  );
-}
-
 function recording_field_maker() {
-  record_input_field = input_field_maker("projectile_simulation", 50, "2", [
-    width - 150,
-    button_height_anchor + button_distance * 4,
-  ]);
+  record_input_field = input_field_maker(
+    canvas_parent,
+    "2",
+    [width - 150, button_height_anchor + button_distance * 4],
+    input_field_attributes
+  );
+}
+
+function add_canvas_elements() {
+  clear();
+  recording_enabled = false;
+
+  buffer = createGraphics(width, height);
+  buffer.background(background_color.x, background_color.y, background_color.z);
+
+  body = new Mover(100, 700 - 20, body_radius, img);
+
+  capturer = make_recorder("webm", 60, true);
+  frame_count = 0;
 }
 
 // Resets the object by redefining it.
@@ -134,37 +108,104 @@ function reset_obj() {
   body.set_trail_color();
 }
 
+function angle_input_maker(element_pos, input_field_pos, default_val) {
+  element_maker(
+    canvas_parent,
+    "h3",
+    "📐 Angle (θ): ",
+    element_pos,
+    angle_element_attributes
+  );
+  angle_input_field = input_field_maker(
+    canvas_parent,
+    default_val,
+    input_field_pos,
+    input_field_attributes
+  );
+}
+
+function velocity_input_maker(element_pos, input_field_pos, default_val) {
+  element_maker(
+    canvas_parent,
+    "h3",
+    "🏃‍♂️ Initial Velocity (v₀): ",
+    element_pos,
+    velocity_element_attributes
+  );
+  initial_velocity_input_field = input_field_maker(
+    canvas_parent,
+    default_val,
+    input_field_pos,
+    input_field_attributes
+  );
+}
+
+function height_input_maker(element_pos, input_field_pos, default_val) {
+  element_maker(
+    canvas_parent,
+    "h3",
+    "📏 Height (h): ",
+    element_pos,
+    height_element_attributes
+  );
+  height_input_field = input_field_maker(
+    canvas_parent,
+    default_val,
+    input_field_pos,
+    input_field_attributes
+  );
+}
+
+function gravity_input_maker(element_pos, input_field_pos, default_val) {
+  element_maker(
+    canvas_parent,
+    "h3",
+    "⏬ Gravity (g):",
+    element_pos,
+    gravity_element_attributes
+  );
+  gravity_input_field = input_field_maker(
+    canvas_parent,
+
+    default_val,
+    input_field_pos,
+    input_field_attributes
+  );
+}
+
 function horizontal_range_input_maker(
   element_pos,
   input_field_pos,
   default_val
 ) {
   element_maker(
-    "projectile_simulation",
+    canvas_parent,
     "h3",
-    "Horizontal Range (R): ",
-    element_pos
+    "🚗 Horizontal Range (R): ",
+    element_pos,
+    horizontal_range_element_attributes
   );
 
   horizontal_range_input_field = input_field_maker(
-    "projectile_simulation",
-    50,
+    canvas_parent,
     default_val,
-    input_field_pos
+    input_field_pos,
+    input_field_attributes
   );
 }
 
 function max_height_input_maker(element_pos, input_field_pos) {
   element_maker(
-    "projectile_simulation",
+    canvas_parent,
     "h3",
-    "Maximum Height (H): ",
-    element_pos
+    "🚀 Maximum Height (H): ",
+    element_pos,
+    max_height_element_attributes
   );
   max_height_input_field = input_field_maker(
-    "projectile_simulation",
-    50,
+    canvas_parent,
     "20",
-    input_field_pos
+    input_field_pos,
+    input_field_attributes
   );
 }

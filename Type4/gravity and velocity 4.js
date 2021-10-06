@@ -60,48 +60,40 @@ function preload() {
 
 // Sets up the screen.
 function setup() {
-  capturer = make_recorder("webm", 60, true);
-  frame_count = 0;
-
   background_color = createVector(255, 255, 255);
   drawing_canvas = createCanvas(canvasSize[0], canvasSize[1]);
   drawing_canvas.position(0);
-  drawing_canvas.parent("projectile_simulation");
+  drawing_canvas.parent(canvas_parent);
   frameRate(frame_rate);
 
-  // buffer is a secondary surface that we will draw our trail on.
-  buffer = createGraphics(width, height);
-  buffer.background(background_color.x, background_color.y, background_color.z);
-
-  body = new Mover(100, 700 - 20, body_radius, img);
-  recording_enabled = false;
+  add_canvas_elements();
 
   horizontal_range_input_maker(
-    [width - 350, element_height_anchor],
+    [width - 405, element_height_anchor + element_distance],
     [width - 150, input_field_height_anchor],
     30
   );
 
   max_height_input_maker(
-    [width - 350, element_height_anchor + element_distance],
+    [width - 405, element_height_anchor + element_distance],
     [width - 150, input_field_height_anchor + input_field_distance],
     20
   );
 
   height_input_maker(
-    [width - 257, element_height_anchor + element_distance * 2],
+    [width - 305, element_height_anchor + element_distance * 2],
     [width - 150, input_field_height_anchor + input_field_distance * 2],
     0
   );
 
   gravity_input_maker(
-    [width - 265, element_height_anchor + element_distance * 3],
+    [width - 310, element_height_anchor + element_distance * 3],
     [width - 150, input_field_height_anchor + input_field_distance * 3],
     9.8
   );
 
   button_maker(
-    "projectile_simulation",
+    canvas_parent,
     width - 150,
     button_height_anchor,
     "Run",
@@ -110,7 +102,7 @@ function setup() {
   );
 
   button_maker(
-    "projectile_simulation",
+    canvas_parent,
     width - 150,
     button_height_anchor + button_distance,
     "Reset Object",
@@ -118,16 +110,16 @@ function setup() {
     reset_obj_button_attributes
   );
   button_maker(
-    "projectile_simulation",
+    canvas_parent,
     width - 150,
     button_height_anchor + button_distance * 2,
     "Reset Display",
-    setup,
+    add_canvas_elements,
     reset_disp_button_attributes
   );
 
   record_checkbox = checkbox_maker(
-    "projectile_simulation",
+    canvas_parent,
     " Record animation (seconds)",
     false,
     [width - 250, button_height_anchor + button_distance * 3],
@@ -146,12 +138,23 @@ function draw() {
   value_calculator();
 
   text_maker(
-    "Initial velocity (v₀): " + initial_velocity.toString(),
+    "Initial velocity (v₀): " + initial_velocity.toString() + " m/s",
     [10, 30],
-    20
+    text_size,
+    "magenta"
   );
-  text_maker("Angle (θ): " + angle.toString(), [10, 70], 20);
-  text_maker("Flight Time (T): " + flight_time.toString(), [10, 110], 20);
+  text_maker(
+    "Angle (θ): " + angle.toString() + "°",
+    [10, 70],
+    text_size,
+    "blue"
+  );
+  text_maker(
+    "Flight Time (T): " + flight_time.toString() + " s",
+    [10, 110],
+    text_size,
+    "yellowgreen"
+  );
 
   body.display();
   body.update();
