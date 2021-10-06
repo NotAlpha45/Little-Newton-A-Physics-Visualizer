@@ -2,6 +2,7 @@ let bob;
 
 let datapoint_count = 0;
 let MAX_DATAPOINT = 500;
+let display_graph_utilities = true;
 
 let angle, angle_input_field, angle_element;
 let g, gravity_input_field, g_element;
@@ -34,10 +35,14 @@ let text_size = 24;
 
 let run_button_attributes = [
   "padding: 5px 5px",
-  "font-size: 16px",
+  "font-size: 18px",
   "border-radius: 10px",
   "box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2), 0 5px 15px 0 rgba(0,0,0,0.19)",
   "border: 3px solid rgb(0, 255, 0)",
+  "text-align: center",
+  "font-family: cursive",
+  "font-weight: bold",
+  "width: 10pc",
 ];
 
 let input_field_attributes = [

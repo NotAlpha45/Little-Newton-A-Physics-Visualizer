@@ -80,11 +80,20 @@ function setup() {
     type: "scatter",
   };
 
-  let graph_settings = {
+  let data_display_settings = {
     yaxis: { range: [-10, 10] },
   };
 
-  Plotly.newPlot("chart", [plot_data], graph_settings);
+  let graph_window_settings = {
+    displayModeBar: display_graph_utilities,
+  };
+
+  Plotly.newPlot(
+    "chart",
+    [plot_data],
+    data_display_settings,
+    graph_window_settings
+  );
 }
 
 function draw() {
