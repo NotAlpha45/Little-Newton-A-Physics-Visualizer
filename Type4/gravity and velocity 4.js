@@ -92,6 +92,14 @@ function setup() {
     9.8
   );
 
+  record_checkbox = checkbox_maker(
+    canvas_parent,
+    " Record animation (seconds)",
+    false,
+    [width - 350, input_field_height_anchor + input_field_distance * 4 + 5],
+    recording_field_maker
+  );
+
   button_maker(
     canvas_parent,
     width - 150,
@@ -116,14 +124,6 @@ function setup() {
     "Reset Display",
     add_canvas_elements,
     reset_disp_button_attributes
-  );
-
-  record_checkbox = checkbox_maker(
-    canvas_parent,
-    " Record animation (seconds)",
-    false,
-    [width - 250, button_height_anchor + button_distance * 3],
-    recording_field_maker
   );
 }
 

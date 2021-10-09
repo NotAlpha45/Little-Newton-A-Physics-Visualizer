@@ -111,7 +111,7 @@ let element_height_anchor = 30,
 let input_field_height_anchor = 30,
   input_field_distance = 60;
 
-let button_height_anchor = 280,
+let button_height_anchor = 320,
   button_distance = 50;
 
 let text_size = 24;
