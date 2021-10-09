@@ -1,0 +1,77 @@
+.description {
+  font-size: 20px;
+  font-family: kalpurush;
+}
+.container1 {
+  position: relative;
+  top: 30px;
+}
+.heading1 {
+  font-family: "Brush Script MT", cursive;
+  font-size: 40pt;
+  color: teal;
+  text-align: center;
+}
+
+.heading2 {
+  font-family: cursive;
+  text-align: center;
+  font-size: 20pt;
+  text-decoration: underline;
+  text-decoration-color: mediumslateblue;
+  text-decoration-thickness: 5px;
+  text-underline-offset: 8px;
+}
+
+.description {
+  font-family: cursive;
+  font-size: 18pt;
+  text-align: center;
+}
+
+.given {
+  color: green;
+  font-style: oblique;
+}
+
+.notGiven {
+  color: red;
+  font-style: oblique;
+}
+
+.angle {
+  color: blue;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.velocity {
+  color: magenta;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.unit {
+  font-family: Cambria;
+  font-weight: bold;
+  font-style: oblique;
+}
+
+.maxHeight {
+  color: darkorange;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.maxRange {
+  color: purple;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.flight_time {
+  color: yellowgreen;
+  font-style: italic;
+  font-weight: bold;
+}
+
