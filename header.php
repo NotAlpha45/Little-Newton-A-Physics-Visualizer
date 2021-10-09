@@ -46,6 +46,10 @@ if (session_status() === PHP_SESSION_NONE) {
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
           <li><a class = "<?php if($pageName == "Home") { echo "active"; } ?>" href="index.php">Home</a></li>
           <li><a class = "<?php if($pageName == "Categories") { echo "active"; } ?>" href="categories.php">Categories</a></li>
           <li><a class = "<?php if($pageName == "Problems") { echo "active"; } ?>" href="problems.php">Problems</a></li>
@@ -63,7 +67,7 @@ if (session_status() === PHP_SESSION_NONE) {
         
         if(isset($_SESSION["user_handle"])){ 
 
-          echo "<li><a href=\"profile.php\">Dashboard</a></li> <li><a href=\"authentication/logout.php\">Logout</a></li>";
+          echo "<li><a href=\"dashboard.php\">Dashboard</a></li> <li><a href=\"authentication/logout.php\">Logout</a></li>";
           
         }
 

@@ -97,8 +97,8 @@ function createUser($conn, $name,$prof,$handle,$email,$pass){
     mysqli_stmt_bind_param($stmt , "sssss", $name,$handle,$email,$prof,$hashedPwd );
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location:login.php");
-    exit();
+    //header("location:..\login.php");
+    return;
 }
 
 ?>

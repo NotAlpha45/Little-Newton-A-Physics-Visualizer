@@ -1,28 +1,18 @@
 <?php
-    $pageName = "Problems";
+    $pageName = "Categories";
     include_once 'header.php';
 ?>
 
 <main id="main">
 
-    <!-- ======= Problem Section ======= -->
+    <!-- ======= Categories Section ======= -->
     <section id="problem" class="problem">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>PROBLEMS</h2>
-          <!--p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p-->
+          <h2>Projectile Motion</h2>
         </div>
 
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="problem-flters">
-              <li data-filter=".filter-app">Dynamics</li>
-              <li data-filter=".filter-card">Periodic Motion</li>
-              <li data-filter=".filter-web">Newtonian Mechanics</li>
-            </ul> 
-          </div>
-        </div>
 
         <div class="row problem-container" data-aos="fade-up" data-aos-delay="200">
 
@@ -39,6 +29,10 @@
               </div>
             </div>
           </div>
+
+          <div class="section-title">
+          <h2>Wave</h2>
+        </div>
           
           <div class="col-lg-4 col-md-6 problem-item filter-card">
             <div class="problem-wrap">

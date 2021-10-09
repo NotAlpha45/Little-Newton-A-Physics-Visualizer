@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     $pageName = "SignUp";
     include_once 'header.php';
 ?>
@@ -94,9 +95,9 @@
 					echo "<script type='text/javascript'>alert('$trk');</script>"; 
 				}
 				else {
-          echo $name;
 					createUser($conn, $name,$prof,$handle,$email,$pass); 
-					header("location:login.php");
+          header("location:login.php");
+          ob_end_flush();
 				}
 				}
  

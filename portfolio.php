@@ -1,26 +1,92 @@
-<?php
-    $pageName = "Problems";
-    include_once 'header.php';
-?>
+<!DOCTYPE html>
+<html lang="en">
 
-<main id="main">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <!-- ======= Problem Section ======= -->
+  <title>problem - Kelly Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Kelly - v4.6.0
+  * Template URL: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+      <h1 class="logo me-auto me-lg-0"><a href="index.html">Kelly</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a class="active" href="problem.html">problem</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <div class="header-social-links">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+      </div>
+
+    </div>
+
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= problem Section ======= -->
     <section id="problem" class="problem">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>PROBLEMS</h2>
-          <!--p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p-->
+          <h2>problem</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="problem-flters">
-              <li data-filter=".filter-app">Dynamics</li>
-              <li data-filter=".filter-card">Periodic Motion</li>
-              <li data-filter=".filter-web">Newtonian Mechanics</li>
-            </ul> 
+              <li><button class="btn">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
           </div>
         </div>
 
@@ -30,33 +96,17 @@
             <div class="problem-wrap">
               <img src="assets/img/problem/problem-1.jpg" class="img-fluid" alt="">
               <div class="problem-info">
-                <h4>Simple Projectile</h4>
-                <p>Dynamics</p>
+                <h4>App 1</h4>
+                <p>App</p>
                 <div class="problem-links">
-                  <!--a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a-->
-                  <a href="projectile/projectile_page.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-4 col-md-6 problem-item filter-card">
-            <div class="problem-wrap">
-              <img src="assets/img/problem/problem-4.jpg" class="img-fluid" alt="">
-              <div class="problem-info">
-                <h4>Wave Superposition</h4>
-                <p>Periodic Motion</p>
-                <div class="problem-links">
-                  
-                  <a href="wave-superposition.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                  <a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                  <a href="problem-details.html" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
           </div>
 
-          
-
-          <!--div class="col-lg-4 col-md-6 problem-item filter-web">
+          <div class="col-lg-4 col-md-6 problem-item filter-web">
             <div class="problem-wrap">
               <img src="assets/img/problem/problem-2.jpg" class="img-fluid" alt="">
               <div class="problem-info">
@@ -84,6 +134,19 @@
             </div>
           </div>
 
+          <div class="col-lg-4 col-md-6 problem-item filter-card">
+            <div class="problem-wrap">
+              <img src="assets/img/problem/problem-4.jpg" class="img-fluid" alt="">
+              <div class="problem-info">
+                <h4>Card 2</h4>
+                <p>Card</p>
+                <div class="problem-links">
+                  <a href="assets/img/problem/problem-4.jpg" data-gallery="problemGallery" class="problem-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
+                  <a href="problem-details.html" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="col-lg-4 col-md-6 problem-item filter-web">
             <div class="problem-wrap">
@@ -153,7 +216,7 @@
                 </div>
               </div>
             </div>
-          </div-->
+          </div>
 
         </div>
 
@@ -162,7 +225,21 @@
 
   </main><!-- End #main -->
 
-  
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Kelly</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
