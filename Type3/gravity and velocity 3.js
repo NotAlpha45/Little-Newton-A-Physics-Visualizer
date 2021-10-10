@@ -62,6 +62,9 @@ function preload() {
 // Sets up the screen.
 function setup() {
   background_color = createVector(255, 255, 255);
+  // Very important note : Do not name your canvas as 'canvas'. 'canvas' itself is an attribute
+  // that is needed to capture animation via CCapture. Similar to 'width' and 'height' that are
+  // built in attribute of P5js.
   drawing_canvas = createCanvas(canvasSize[0], canvasSize[1]);
   drawing_canvas.position(0);
   drawing_canvas.parent(canvas_parent);
