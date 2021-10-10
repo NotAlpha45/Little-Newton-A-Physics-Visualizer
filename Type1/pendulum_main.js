@@ -38,7 +38,7 @@ function preload() {
 function setup() {
   // Very important note : Do not name your canvas as 'canvas'. 'canvas' itself is an attribute
   // that is needed to capture animation via CCapture. Similar to 'width' and 'height' that are
-  // built in attribute of CCapture.
+  // built in attribute of P5js.
   drawing_canvas = createCanvas(canvasSize[0], canvasSize[1]);
   drawing_canvas.position(0, 0, "relative");
   drawing_canvas.parent(canvas_parent);
