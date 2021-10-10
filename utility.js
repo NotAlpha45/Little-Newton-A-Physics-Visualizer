@@ -50,7 +50,7 @@ function capture_animation(recorder, time) {
 function recording_field_maker() {
   record_input_field = input_field_maker(
     "2",
-    [320, record_checkbox_height_anchor],
+    [350, record_checkbox_height_anchor],
     input_field_attributes
   );
 }
