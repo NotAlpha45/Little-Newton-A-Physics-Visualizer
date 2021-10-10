@@ -36,9 +36,12 @@ function preload() {
 }
 
 function setup() {
-  canvas = createCanvas(canvasSize[0], canvasSize[1]);
-  canvas.position(0, 0, "relative");
-  canvas.parent(canvas_parent);
+  // Very important note : Do not name your canvas as 'canvas'. 'canvas' itself is an attribute
+  // that is needed to capture animation via CCapture. Similar to 'width' and 'height' that are
+  // built in attribute of CCapture.
+  drawing_canvas = createCanvas(canvasSize[0], canvasSize[1]);
+  drawing_canvas.position(0, 0, "relative");
+  drawing_canvas.parent(canvas_parent);
   frameRate(60);
 
   buffer = createGraphics(width, height);
