@@ -74,6 +74,9 @@
 					session_start();
 					$_SESSION["user_handle"]= $row["user_handle"];
           $userHandle = $_SESSION["user_handle"];
+          $_SESSION["user_profession"]=$row["user_profession"];
+          $_SESSION["user_email"]= $row["user_email"];
+          $_SESSION["user_fullname"]=$row["user_fullname"];
 					header("location:index.php");
 				}
 				}

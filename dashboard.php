@@ -31,6 +31,7 @@
                   <li><i class="bi bi-rounded-right"></i> <strong>Profession:</strong> <?=getProfession($conn, $_SESSION["user_handle"]);?></li>
                   <li><i class="bi bi-rounded-right"></i> <strong>Saved Problems:</strong> 0</li>
                 </ul>
+                <a href="edit_profile.php" class="btn-about">Edit Profile</a>
               </div>
               
             </div>
