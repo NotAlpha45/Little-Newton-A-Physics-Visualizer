@@ -83,6 +83,27 @@ function passDidntMatch($conn,$handle,$pass ){
     }
     return $result ;
 }
+function getEmail($conn,$handle ){
+    $sql = "SELECT  user_email FROM user WHERE user_handle = '$handle' ;";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($query,MYSQLI_ASSOC);
+    $email = $row['user_email'];
+    return $email  ;
+}
+function getProfession($conn,$handle){
+    $sql = "SELECT  user_profession FROM user WHERE user_handle = '$handle' ;";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($query,MYSQLI_ASSOC);
+    $profession = $row['user_profession'];
+    return $profession  ;
+}
+function getFullname($conn,$handle){
+    $sql = "SELECT  user_fullname FROM user WHERE user_handle = '$handle' ;";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($query,MYSQLI_ASSOC);
+    $fullname = $row['user_fullname'];
+    return $fullname  ;
+}
 
 function createUser($conn, $name,$prof,$handle,$email,$pass){
 

@@ -30,6 +30,48 @@
             </div>
           </div>
 
+          <div class="col-lg-4 col-md-6 problem-item filter-app">
+            <div class="problem-wrap">
+              <img src="assets/img/problem/problem-2.jpg" class="img-fluid" alt="">
+              <div class="problem-info">
+                <h4>Range Is Key</h4>
+                <p>Dynamics</p>
+                <div class="problem-links">
+                  <!--a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a-->
+                  <a href="projectile/projectile_page_2.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 problem-item filter-app">
+            <div class="problem-wrap">
+              <img src="assets/img/problem/problem-3.jpg" class="img-fluid" alt="">
+              <div class="problem-info">
+                <h4>Simple Projectile</h4>
+                <p>Dynamics</p>
+                <div class="problem-links">
+                  <!--a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a-->
+                  <a href="projectile/projectile_page_3.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 problem-item filter-app">
+            <div class="problem-wrap">
+              <img src="assets/img/problem/problem-5.jpg" class="img-fluid" alt="">
+              <div class="problem-info">
+                <h4>Simple Projectile</h4>
+                <p>Dynamics</p>
+                <div class="problem-links">
+                  <!--a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a-->
+                  <a href="projectile/projectile_page_4.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="section-title">
           <h2>Wave</h2>
         </div>

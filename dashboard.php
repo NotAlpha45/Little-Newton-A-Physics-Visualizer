@@ -1,6 +1,7 @@
 <?php
-    $pageName = "Home";
     include_once 'header.php';
+    require_once 'authentication/dbh.inc.php';
+		require_once 'authentication/functions.inc.php';
 ?>
   <main id="main">
 
@@ -25,10 +26,10 @@
             <div class="row">
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-rounded-right"></i> <strong>Name:</strong> 1 May 1995</li>
-                  <li><i class="bi bi-rounded-right"></i> <strong>Email:</strong> www.example.com</li>
-                  <li><i class="bi bi-rounded-right"></i> <strong>Profession:</strong> +123 456 7890</li>
-                  <li><i class="bi bi-rounded-right"></i> <strong>Saved Problems:</strong> +123 456 7890</li>
+                  <li><i class="bi bi-rounded-right"></i> <strong>Name:</strong> <?=getFullname($conn, $_SESSION["user_handle"]);?> </li>
+                  <li><i class="bi bi-rounded-right"></i> <strong>Email:</strong> <?=getEmail($conn, $_SESSION["user_handle"]);?></li>
+                  <li><i class="bi bi-rounded-right"></i> <strong>Profession:</strong> <?=getProfession($conn, $_SESSION["user_handle"]);?></li>
+                  <li><i class="bi bi-rounded-right"></i> <strong>Saved Problems:</strong> 0</li>
                 </ul>
               </div>
               
