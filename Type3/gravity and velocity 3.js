@@ -22,6 +22,35 @@ function value_input() {
   body.setGravity(gravity);
 }
 
+function save_value() {
+  var is_called = true;
+
+  max_height = float(max_height_input_field.value());
+
+  gravity = float(gravity_input_field.value()) / 9.8;
+
+  body_height = float(height_input_field.value()) * 10;
+
+  angle = (float(angle_input_field.value()) * Math.PI) / 180;
+
+  var userdata = {
+    param0: is_called,
+    param1: angle,
+    param2: max_height,
+    param3: body_height,
+    param4: gravity,
+  };
+
+  $.ajax({
+    type: "POST",
+    url: "projectile_page_3.php",
+    data: userdata,
+    success: function (data) {
+      console.log(data);
+    },
+  });
+}
+
 function value_calculator() {
   let h0 = body_height / 10;
   let g = gravity * 9.8;
@@ -128,6 +157,15 @@ function setup() {
     "Reset Display",
     add_canvas_elements,
     reset_disp_button_attributes
+  );
+
+  button_maker(
+    canvas_parent,
+    width - 150,
+    button_height_anchor + button_distance * 3,
+    "Save Values",
+    save_value,
+    save_button_attributes
   );
 }
 
