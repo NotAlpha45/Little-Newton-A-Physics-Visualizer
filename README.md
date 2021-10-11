@@ -25,6 +25,7 @@ physics events. It has a easy to use UI and is a web hosted app.
 - [Plotlyjs](https://plotly.com/) library of javascript for plotting graphs.
 
 ## Authors
-@Raiyan-Noor : UI designer.
-@Tasfia-Tahsin : Backend and database designer.
-@Maheen Hoque : Visualization designer.
+
+@Raiyan-Noor : UI designer. <br>
+@Tasfia-Tahsin : Backend and database designer.<br>
+@Maheen Hoque : Visualization designer.<br>
