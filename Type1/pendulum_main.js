@@ -14,6 +14,32 @@ function value_input() {
   bob.set_damping(damping);
 }
 
+function save_value() {
+  var is_called = true;
+
+  let angle_inp = float(angle_input_field.value());
+
+  let g_inp = float(gravity_input_field.value());
+
+  let string_length_inp = float(length_input_field.value());
+
+  var userdata = {
+    param0: is_called,
+    param1: angle_inp,
+    param2: g_inp,
+    param3: string_length_inp,
+  };
+
+  $.ajax({
+    type: "POST",
+    url: "pendulum_page.php",
+    data: userdata,
+    success: function (data) {
+      console.log(data);
+    },
+  });
+}
+
 function value_calculator() {
   let l = string_length;
   let A = (angle * Math.PI) / 180;
@@ -45,6 +71,9 @@ function setup() {
   // buffer.background(94, 219, 211);
   buffer.background(255, 255, 255);
 
+  bob = new Bob(200, 0, body_radius, img);
+  bob.set_damping(1);
+
   angle_input_maker(
     [width + 175, element_height_anchor],
     [width + 310, input_field_height_anchor],
@@ -71,8 +100,13 @@ function setup() {
     run_button_attributes
   );
 
-  bob = new Bob(200, 0, body_radius, img);
-  bob.set_damping(1);
+  button_maker(
+    canvas_parent,
+    [width + 310, button_height_anchor + button_distance],
+    "Save Values",
+    save_value,
+    save_button_attributes
+  );
 
   let plot_data = {
     // Adjusted coodinate for plotting.
