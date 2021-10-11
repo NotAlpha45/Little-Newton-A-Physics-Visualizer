@@ -58,6 +58,8 @@ $param1val = isset($_POST['param1']) ? $_POST['param1'] : '';
 $param2val = isset($_POST['param2']) ? $_POST['param2'] : '';
 $param3val = isset($_POST['param3']) ? $_POST['param3'] : '';
 $param4val = isset($_POST['param4']) ? $_POST['param4'] : '';
+$url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$validUrl = str_replace("&", "&amp;", $url);
 
 
 if ($param0val) {
@@ -76,7 +78,8 @@ if ($param0val) {
 
     echo "<script>alert($u_id)</script>";
 
-    $sql = "INSERT INTO problem (user_id, problem_name, param1, param2, param3, param4) VALUES ($u_id,'projectile_page_2.php', $param1val, $param2val, $param3val, $param4val)";
+    $sql = "INSERT INTO problem (user_id, problem_name, problem_link, param1, param2, param3, param4) VALUES ($u_id,'projectile2','$validUrl', $param1val, $param2val, $param3val, $param4val)";
+    
     if (mysqli_query($conn, $sql)) {
         echo "Records inserted successfully.";
     } else {
