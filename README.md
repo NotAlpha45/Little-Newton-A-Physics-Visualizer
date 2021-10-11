@@ -23,3 +23,8 @@ physics events. It has a easy to use UI and is a web hosted app.
 - PHP for backend control.
 - [P5js](https://p5js.org/) library of javascript for visualizations.
 - [Plotlyjs](https://plotly.com/) library of javascript for plotting graphs.
+
+## Authors
+@Raiyan-Noor : UI designer.
+@Tasfia-Tahsin : Backend and database designer.
+@Maheen Hoque : Visualization designer.
