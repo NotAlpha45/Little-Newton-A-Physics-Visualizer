@@ -26,6 +26,6 @@ physics events. It has a easy to use UI and is a web hosted app.
 
 ## Authors
 
-@Raiyan-Noor : UI designer. <br>
-@Tasfia-Tahsin : Backend and database designer.<br>
-@Maheen Hoque : Visualization designer.<br>
+[Raiyan Noor](https://github.com/Raiyan-Noor) : UI designer. <br>
+[Tasfia Tahsin](https://github.com/Tasfia-Tahsin) : Backend and database designer.<br>
+[Maheen Hoque](https://github.com/NotAlpha45) : Visualization designer.<br>
