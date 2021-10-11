@@ -82,7 +82,7 @@ function recording_field_maker() {
   record_input_field = input_field_maker(
     canvas_parent,
     "2",
-    [width - 150, button_height_anchor + button_distance * 4],
+    [width - 30, input_field_height_anchor + input_field_distance * 4],
     input_field_attributes
   );
 }

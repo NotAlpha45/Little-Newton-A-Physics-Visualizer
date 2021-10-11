@@ -66,9 +66,12 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php 
         
         if(isset($_SESSION["user_handle"])){ 
-
-          echo "<li><a href=\"dashboard.php\">Dashboard</a></li> <li><a href=\"authentication/logout.php\">Logout</a></li>";
-          
+          if($pageName == "Dashboard"){
+          echo "<li><a class = \"active\" href=\"dashboard.php\">Dashboard</a></li> <li><a href=\"authentication/logout.php\">Logout</a></li>";
+          }
+          else{
+            echo "<li><a href=\"dashboard.php\">Dashboard</a></li> <li><a href=\"authentication/logout.php\">Logout</a></li>";
+          }
         }
 
         else{

@@ -55,7 +55,7 @@
               <div class="my-3">
                 
               </div>
-              <div class="text-center"><button type="submit" class="btn-about">Sign Up</button></div>
+              <div class="text-center"><button type="submit" class="button1">Sign Up</button></div>
               
             </form>
 

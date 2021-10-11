@@ -1,5 +1,10 @@
 <?php
-
+$param1=NULL;
+$param2=NULL;
+$param3=NULL;
+$param4=NULL;
+$param5=NULL;
+$param6=NULL;
 
 require_once 'dbh.inc.php';
 
@@ -104,12 +109,33 @@ function getFullname($conn,$handle){
     $fullname = $row['user_fullname'];
     return $fullname  ;
 }
+function getSavedProblemCount($conn , $user_id )
+{
+    $sql = "SELECT  COUNT(storage_id) as total FROM problem WHERE user_id = '$user_id' ;";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($query,MYSQLI_ASSOC);
+
+    return $row['total']; 
+}
 function update($conn,$name,$prof,$handle,$email){
     $sql = "UPDATE user SET user_fullname = '{$name}' , user_email = '{$email}' , user_profession= '{$prof}'  WHERE user_handle = '{$handle}'";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $sql);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
+}
+function getParameters($conn , $storageId )
+{
+    $sql = "SELECT  * FROM problem WHERE storage_id = '{$storageId}`' ;";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($query,MYSQLI_ASSOC);
+    $param1=$row['param1'];
+    $param2=$row['param2'];
+    $param3=$row['param3'];
+    $param4=$row['param4'];
+    $param5=$row['param5'];
+    $param6=$row['param6'];
+    header("location: {$row['problem_link']}");
 }
 function createUser($conn, $name,$prof,$handle,$email,$pass){
 
@@ -128,4 +154,3 @@ function createUser($conn, $name,$prof,$handle,$email,$pass){
     return;
 }
 
-?>

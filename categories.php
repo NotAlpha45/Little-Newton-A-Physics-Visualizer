@@ -21,10 +21,10 @@
               <img src="assets/img/problem/problem-1.jpg" class="img-fluid" alt="">
               <div class="problem-info">
                 <h4>Simple Projectile</h4>
-                <p>Dynamics</p>
+                <p>Projectile Motion</p>
                 <div class="problem-links">
                   <!--a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a-->
-                  <a href="projectile/projectile_page.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                  <a href="projectile_page.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
                 </div>
               </div>
             </div>
@@ -35,10 +35,10 @@
               <img src="assets/img/problem/problem-2.jpg" class="img-fluid" alt="">
               <div class="problem-info">
                 <h4>Range Is Key</h4>
-                <p>Dynamics</p>
+                <p>Projectile Motion</p>
                 <div class="problem-links">
                   <!--a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a-->
-                  <a href="projectile/projectile_page_2.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                  <a href="projectile_page_2.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
                 </div>
               </div>
             </div>
@@ -48,11 +48,11 @@
             <div class="problem-wrap">
               <img src="assets/img/problem/problem-3.jpg" class="img-fluid" alt="">
               <div class="problem-info">
-                <h4>Simple Projectile</h4>
-                <p>Dynamics</p>
+                <h4>Height Of Flight</h4>
+                <p>Projectile Motion</p>
                 <div class="problem-links">
                   <!--a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a-->
-                  <a href="projectile/projectile_page_3.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                  <a href="projectile_page_3.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
                 </div>
               </div>
             </div>
@@ -62,18 +62,18 @@
             <div class="problem-wrap">
               <img src="assets/img/problem/problem-5.jpg" class="img-fluid" alt="">
               <div class="problem-info">
-                <h4>Simple Projectile</h4>
-                <p>Dynamics</p>
+                <h4>Range And Height Unite</h4>
+                <p>Projectile Motion</p>
                 <div class="problem-links">
                   <!--a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a-->
-                  <a href="projectile/projectile_page_4.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                  <a href="projectile_page_4.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="section-title">
-          <h2>Wave</h2>
+          <h2>Periodic Motion</h2>
         </div>
           
           <div class="col-lg-4 col-md-6 problem-item filter-card">
@@ -89,6 +89,21 @@
               </div>
             </div>
           </div>
+
+          <div class="col-lg-4 col-md-6 problem-item filter-card">
+            <div class="problem-wrap">
+              <img src="assets/img/problem/problem-6.jpg" class="img-fluid" alt="">
+              <div class="problem-info">
+                <h4>Simple Pendulum</h4>
+                <p>Periodic Motion</p>
+                <div class="problem-links">
+                  
+                  <a href="pendulum_page.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
 
           
 

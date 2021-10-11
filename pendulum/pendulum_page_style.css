@@ -1,0 +1,91 @@
+.description {
+  font-size: 20px;
+  font-family: kalpurush;
+}
+.container1 {
+  /* Sticky so that the canvas stays in place*/
+  position: sticky;
+  top: 30px;
+  text-align: center;
+}
+
+/* The pendulum display section */
+.section1 {
+  position: relative;
+}
+
+.container2 {
+  position: relative;
+  width: 70%;
+  height: 60%;
+  margin: auto;
+}
+
+.heading1 {
+  font-family: "Brush Script MT", cursive;
+  font-size: 40pt;
+  color: teal;
+  text-align: center;
+}
+
+.heading2 {
+  font-family: cursive;
+  text-align: center;
+  font-size: 20pt;
+  text-decoration: underline;
+  text-decoration-color: mediumslateblue;
+  text-decoration-thickness: 5px;
+  text-underline-offset: 8px;
+}
+
+.description {
+  font-family: cursive;
+  font-size: 18pt;
+  text-align: center;
+}
+
+.given {
+  color: green;
+  font-style: oblique;
+}
+
+.notGiven {
+  color: red;
+  font-style: oblique;
+}
+
+.angle {
+  color: blue;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.gravity {
+  color: magenta;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.unit {
+  font-family: Cambria;
+  font-weight: bold;
+  font-style: oblique;
+}
+
+.effectiveLength {
+  color: darkorange;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.motionpath {
+  color: purple;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.period {
+  color: yellowgreen;
+  font-style: italic;
+  font-weight: bold;
+}

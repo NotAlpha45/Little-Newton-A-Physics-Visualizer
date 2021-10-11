@@ -27,21 +27,22 @@
             <form action="edit_profile.php" method="post">
             <div class="row h-100 justify-content-center align-items-center">
                 <div class="form-group col-5">
-                  <input type="text" name="username" class="form-control" id="name" placeholder = $n  required>
+                  <input type="text" name="username" class="form-control" id="name" placeholder = "Name: ( <?=$n?> )"  required>
                   </div>
                 </div>
                   <div class="row h-100 justify-content-center align-items-center">
                 <div class="form-group col-5">
-                  <input type="email" class="form-control" name="email" id="email" placeholder=$e required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Email: ( <?=$e?> )" required>
                 </div>
               </div>
               <div class="row h-100 justify-content-center align-items-center">
               <div class="form-group col-5">
-                <input type="text" class="form-control" name="userprof" id="userprof" placeholder= $p required>
+                <input type="text" class="form-control" name="userprof" id="userprof" placeholder= "Profession: ( <?=$p?> )" required>
               </div>
               </div>  
               </div>
-              <div class="text-center"><button type="submit" class="btn-about">Save Changes</button></div>
+              <div><br></div>
+              <div class="text-center"><button type="submit" class="button1">Save Changes</button></div>
             </form>
 
           </div>

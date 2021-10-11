@@ -14,15 +14,7 @@
           <!--p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p-->
         </div>
 
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="problem-flters">
-              <li data-filter=".filter-app">Dynamics</li>
-              <li data-filter=".filter-card">Periodic Motion</li>
-              <li data-filter=".filter-web">Newtonian Mechanics</li>
-            </ul> 
-          </div>
-        </div>
+        
 
         <div class="row problem-container" data-aos="fade-up" data-aos-delay="200">
 
@@ -31,10 +23,10 @@
               <img src="assets/img/problem/problem-1.jpg" class="img-fluid" alt="">
               <div class="problem-info">
                 <h4>Simple Projectile</h4>
-                <p>Dynamics</p>
+                <p>Projectile Motion</p>
                 <div class="problem-links">
                   <!--a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a-->
-                  <a href="projectile/projectile_page.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                  <a href="projectile_page.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
                 </div>
               </div>
             </div>
@@ -44,11 +36,11 @@
             <div class="problem-wrap">
               <img src="assets/img/problem/problem-2.jpg" class="img-fluid" alt="">
               <div class="problem-info">
-                <h4>Simple Projectile</h4>
-                <p>Dynamics</p>
+                <h4>Range Is Key</h4>
+                <p>Projectile Motion</p>
                 <div class="problem-links">
                   <!--a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a-->
-                  <a href="projectile/projectile_page_2.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                  <a href="projectile_page_2.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
                 </div>
               </div>
             </div>
@@ -58,11 +50,11 @@
             <div class="problem-wrap">
               <img src="assets/img/problem/problem-3.jpg" class="img-fluid" alt="">
               <div class="problem-info">
-                <h4>Simple Projectile</h4>
-                <p>Dynamics</p>
+                <h4>Height Of Flight</h4>
+                <p>Projectile Motion</p>
                 <div class="problem-links">
                   <!--a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a-->
-                  <a href="projectile/projectile_page_3.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                  <a href="projectile_page_3.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
                 </div>
               </div>
             </div>
@@ -72,11 +64,11 @@
             <div class="problem-wrap">
               <img src="assets/img/problem/problem-5.jpg" class="img-fluid" alt="">
               <div class="problem-info">
-                <h4>Simple Projectile</h4>
-                <p>Dynamics</p>
+                <h4>Range And Height Unite</h4>
+                <p>Projectile Motion</p>
                 <div class="problem-links">
                   <!--a href="assets/img/problem/problem-1.jpg" data-gallery="problemGallery" class="problem-lightbox" title="App 1"><i class="bx bx-plus"></i></a-->
-                  <a href="projectile/projectile_page_4.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                  <a href="projectile_page_4.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
                 </div>
               </div>
             </div>
@@ -91,6 +83,20 @@
                 <div class="problem-links">
                   
                   <a href="wave-superposition.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 problem-item filter-card">
+            <div class="problem-wrap">
+              <img src="assets/img/problem/problem-6.jpg" class="img-fluid" alt="">
+              <div class="problem-info">
+                <h4>Simple Pendulum</h4>
+                <p>Periodic Motion</p>
+                <div class="problem-links">
+                  
+                  <a href="pendulum_page.php" class="problem-details-lightbox" data-glightbox="type: external" title="problem Details"><i class="bx bx-window-open"></i></a>
                 </div>
               </div>
             </div>

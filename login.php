@@ -35,7 +35,7 @@
               <div class="my-3">
                 
               </div>
-              <div class="text-center"><button type="submit">Login</button></div>
+              <div class="text-center"><button type = "submit" class="button1">Login</button></div>
             </form>
             </div>
 
@@ -72,7 +72,9 @@
 					$query = mysqli_query($conn, $sql);
 					$row = mysqli_fetch_array($query,MYSQLI_ASSOC);
 					session_start();
+          $_SESSION["user_id"]= $row["user_id"];
 					$_SESSION["user_handle"]= $row["user_handle"];
+
           $userHandle = $_SESSION["user_handle"];
           $_SESSION["user_profession"]=$row["user_profession"];
           $_SESSION["user_email"]= $row["user_email"];

@@ -1,4 +1,5 @@
 <?php
+    $pageName = "Dashboard";
     include_once 'header.php';
     require_once 'authentication/dbh.inc.php';
 		require_once 'authentication/functions.inc.php';
@@ -29,7 +30,7 @@
                   <li><i class="bi bi-rounded-right"></i> <strong>Name:</strong> <?=getFullname($conn, $_SESSION["user_handle"]);?> </li>
                   <li><i class="bi bi-rounded-right"></i> <strong>Email:</strong> <?=getEmail($conn, $_SESSION["user_handle"]);?></li>
                   <li><i class="bi bi-rounded-right"></i> <strong>Profession:</strong> <?=getProfession($conn, $_SESSION["user_handle"]);?></li>
-                  <li><i class="bi bi-rounded-right"></i> <strong>Saved Problems:</strong> 0</li>
+                  <li><i class="bi bi-rounded-right"></i> <strong>Saved Problems:</strong> <?=getSavedProblemCount($conn, $_SESSION["user_id"]);?></li>
                 </ul>
                 <a href="edit_profile.php" class="btn-about">Edit Profile</a>
               </div>
@@ -42,71 +43,45 @@
       </div>
     </section><!-- End About Section -->
 
-    <!-- ======= Skills Section ======= -->
-    <section id="skills" class="skills">
+    <!-- ======= Saved Problems Section ======= -->
+    <section id="resume" class="resume">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
           <h2>Saved Problems</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
-        <div class="row skills-content">
-
+        <div class="row">
           <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill">HTML <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+          <h3 class="resume-title">Problem List</h3>
+            <div class="resume-item">
+              
+              <p>
+              <ul>
+                <?php
+                    $i=0; 
+                    $sql = "SELECT  * FROM problem WHERE user_id = '{$_SESSION["user_id"]}' ;";
+                    $result = mysqli_query($conn, $sql);
+                
+                while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+                {
+                    echo "<li><a href=\"{$row['problem_link']}\"><h5>{$row['problem_name']}</h5></a><p><b>Parameters: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param1']}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param2']}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param3']}
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param4']}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param5']}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param6']}</b></p></li>";  
+                    $i=$i+1; 
+                }
+                
+                ?>
+              </ul>
+              </p>
             </div>
 
-            <div class="progress">
-              <span class="skill">CSS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">JavaScript <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
+            
           </div>
-
-          <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill">PHP <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">WordPress/CMS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Photoshop <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div>
-
+          
         </div>
 
       </div>
-    </section><!-- End Skills Section -->
+    </section><!-- End Resume Section -->
 
     
   </main><!-- End #main -->
