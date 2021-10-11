@@ -104,13 +104,7 @@ function getFullname($conn,$handle){
     $fullname = $row['user_fullname'];
     return $fullname  ;
 }
-function update($conn,$name,$prof,$handle,$email){
-    $sql = "UPDATE user SET user_fullname = '{$name}' , user_email = '{$email}' , user_profession= '{$prof}'  WHERE user_handle = '{$handle}'";
-    $stmt = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-}
+
 function createUser($conn, $name,$prof,$handle,$email,$pass){
 
     $sql = "INSERT INTO user (user_fullname, user_handle, user_email, user_profession, user_password ) VALUES (?,?,?,?,?)";
@@ -127,5 +121,3 @@ function createUser($conn, $name,$prof,$handle,$email,$pass){
     //header("location:..\login.php");
     return;
 }
-
-?>

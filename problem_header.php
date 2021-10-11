@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Wave Superposition - Little Newton</title>
+  <title>Little Newton</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -31,9 +31,18 @@ if (session_status() === PHP_SESSION_NONE) {
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <script src="projectile/node_modules/ccapture_src/CCapture.js"></script>
+  <script src="projectile/node_modules/ccapture_src/webm-writer-0.2.0.js"></script>
+  <script src="projectile/node_modules/ccapture_src/download.js"></script>
+
+  <script src="pendulum/node_modules/plotly.js-dist-min/plotly.min.js"></script>
+
+
+
   <meta charset="utf-8" />
 </head>
 
@@ -48,12 +57,12 @@ if (session_status() === PHP_SESSION_NONE) {
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
-       
+
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
 
     </div>
-    
+
 
   </header><!-- End Header -->

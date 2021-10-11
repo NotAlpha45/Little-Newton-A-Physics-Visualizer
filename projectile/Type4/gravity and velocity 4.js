@@ -1,5 +1,3 @@
-body_height = 100;
-
 //Takes value input from the input fields.
 function value_input() {
   if (record_checkbox.checked()) {
@@ -23,6 +21,35 @@ function value_input() {
   body.setVelocity(initial_velocity, (angle * Math.PI) / 180);
 
   body.setGravity(gravity);
+}
+
+function save_value() {
+  var is_called = true;
+
+  let max_height_inp = float(max_height_input_field.value());
+
+  let horizontal_range_inp = float(horizontal_range_input_field.value());
+
+  let body_height_inp = float(height_input_field.value());
+
+  let gravity_inp = float(gravity_input_field.value());
+
+  var userdata = {
+    param0: is_called,
+    param1: horizontal_range_inp,
+    param2: max_height_inp,
+    param3: body_height_inp,
+    param4: gravity_inp,
+  };
+
+  $.ajax({
+    type: "POST",
+    url: "projectile_page_4.php",
+    data: userdata,
+    success: function (data) {
+      console.log(data);
+    },
+  });
 }
 
 function value_calculator() {
@@ -61,6 +88,9 @@ function preload() {
 // Sets up the screen.
 function setup() {
   background_color = createVector(255, 255, 255);
+  // Very important note : Do not name your canvas as 'canvas'. 'canvas' itself is an attribute
+  // that is needed to capture animation via CCapture. Similar to 'width' and 'height' that are
+  // built in attribute of P5js.
   drawing_canvas = createCanvas(canvasSize[0], canvasSize[1]);
   drawing_canvas.position(0);
   drawing_canvas.parent(canvas_parent);
@@ -69,7 +99,7 @@ function setup() {
   add_canvas_elements();
 
   horizontal_range_input_maker(
-    [width - 405, element_height_anchor + element_distance],
+    [width - 405, element_height_anchor],
     [width - 150, input_field_height_anchor],
     30
   );
@@ -90,6 +120,14 @@ function setup() {
     [width - 310, element_height_anchor + element_distance * 3],
     [width - 150, input_field_height_anchor + input_field_distance * 3],
     9.8
+  );
+
+  record_checkbox = checkbox_maker(
+    canvas_parent,
+    " Record animation (seconds)",
+    false,
+    [width - 380, input_field_height_anchor + input_field_distance * 4 + 5],
+    recording_field_maker
   );
 
   button_maker(
@@ -118,12 +156,13 @@ function setup() {
     reset_disp_button_attributes
   );
 
-  record_checkbox = checkbox_maker(
+  button_maker(
     canvas_parent,
-    " Record animation (seconds)",
-    false,
-    [width - 250, button_height_anchor + button_distance * 3],
-    recording_field_maker
+    width - 150,
+    button_height_anchor + button_distance * 3,
+    "Save Values",
+    save_value,
+    save_button_attributes
   );
 }
 
