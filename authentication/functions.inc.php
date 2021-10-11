@@ -135,8 +135,8 @@ function getParameters($conn , $storageId )
     $param4=$row['param4'];
     $param5=$row['param5'];
     $param6=$row['param6'];
-    header("location: {$row['problem_link']}");
-}
+    return;
+}   
 function createUser($conn, $name,$prof,$handle,$email,$pass){
 
     $sql = "INSERT INTO user (user_fullname, user_handle, user_email, user_profession, user_password ) VALUES (?,?,?,?,?)";

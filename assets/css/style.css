@@ -1429,3 +1429,8 @@ section {
   font-size: 16px;
   border-radius: 50px;
 }
+
+.button2 {
+  background-color: transparent;
+  border: none;
+}

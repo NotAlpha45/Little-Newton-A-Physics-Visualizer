@@ -65,8 +65,8 @@
                 
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
                 {
-                    echo "<li><a href=\"{$row['problem_link']}\"><h5>{$row['problem_name']}</h5></a><p><b>Parameters: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param1']}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param2']}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param3']}
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param4']}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param5']}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param6']}</b></p></li>";  
+                  echo "<li><a href=\"{$row['problem_link']}\"><h5>{$row['problem_name']}</h5></a><p><b>Parameters: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param1']}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param2']}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param3']}
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param4']}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param5']}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{$row['param6']}</b></p></li>";
                     $i=$i+1; 
                 }
                 
