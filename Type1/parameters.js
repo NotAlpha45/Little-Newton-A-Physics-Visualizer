@@ -33,18 +33,6 @@ let body_radius = 15;
 
 let text_size = 24;
 
-let save_button_attributes = [
-  "padding: 5px 5px",
-  "font-size: 18px",
-  "border-radius: 10px",
-  "box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2), 0 5px 15px 0 rgba(0,0,0,0.19)",
-  "border: 3px solid purple",
-  "text-align: center",
-  "font-family: cursive",
-  "font-weight: bold",
-  "width: 10pc",
-];
-
 let run_button_attributes = [
   "padding: 5px 5px",
   "font-size: 18px",

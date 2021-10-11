@@ -14,30 +14,6 @@ function value_input() {
   bob.set_damping(damping);
 }
 
-function save_value() {
-  var is_called = true;
-
-  string_length = float(length_input_field.value()) * 100;
-  g = float(gravity_input_field.value()) / 10;
-  angle = (float(angle_input_field.value()) * Math.PI) / 180;
-
-  var userdata = {
-    param0: is_called,
-    param1: angle,
-    param2: g,
-    param3: string_length,
-  };
-
-  $.ajax({
-    type: "POST",
-    url: "pendulum_page.php",
-    data: userdata,
-    success: function (data) {
-      console.log(data);
-    },
-  });
-}
-
 function value_calculator() {
   let l = string_length;
   let A = (angle * Math.PI) / 180;
@@ -60,12 +36,9 @@ function preload() {
 }
 
 function setup() {
-  // Very important note : Do not name your canvas as 'canvas'. 'canvas' itself is an attribute
-  // that is needed to capture animation via CCapture. Similar to 'width' and 'height' that are
-  // built in attribute of P5js.
-  drawing_canvas = createCanvas(canvasSize[0], canvasSize[1]);
-  drawing_canvas.position(0, 0, "relative");
-  drawing_canvas.parent(canvas_parent);
+  canvas = createCanvas(canvasSize[0], canvasSize[1]);
+  canvas.position(0, 0, "relative");
+  canvas.parent(canvas_parent);
   frameRate(60);
 
   buffer = createGraphics(width, height);
@@ -96,15 +69,6 @@ function setup() {
     "Run",
     value_input,
     run_button_attributes
-  );
-
-  button_maker(
-    canvas_parent,
-    width + 310,
-    button_height_anchor + button_distance,
-    "Save Values",
-    save_value,
-    save_button_attributes
   );
 
   bob = new Bob(200, 0, body_radius, img);
